@@ -323,7 +323,7 @@ export function ServiceAreasGridSection() {
   );
 }
 
-function AreaCard({ area }: { area: (typeof AREAS)[0] }) {
+function AreaCard({ area }: { area: (typeof AREAS)[number] }) {
   const [open, setOpen] = useState(false);
 
   const ctaHref = area.hasDetailPage && area.slug ? area.slug : "#book";
