@@ -21,20 +21,6 @@ const AREAS = [
     venues: ["The Biltmore Hotel", "Coral Gables Country Club", "Fairchild Tropical Garden"],
   },
   {
-    name: "Miami Beach",
-    slug: null,
-    hasDetailPage: false,
-    region: "Miami-Dade",
-    tag: "High Demand",
-    tagColor: "#222222",
-    distance: "9 mi from Downtown",
-    image: "/images/Areas/miami-beach-miami-white-trolley-transportation.jpg",
-    description:
-      "Reliable guest transportation between beachfront hotels, ceremony sites, and reception venues in Miami Beach.",
-    events: ["Weddings", "Beach Events", "VIP"],
-    venues: ["The Setai", "Faena Hotel", "The Palms Hotel & Spa"],
-  },
-  {
     name: "Fort Lauderdale",
     slug: "/service-areas/fort-lauderdale",
     hasDetailPage: true,
