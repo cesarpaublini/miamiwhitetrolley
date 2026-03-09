@@ -3,9 +3,10 @@ import type { ServiceAreaPage } from "@/lib/service-areas";
 
 type ServiceAreaHeroProps = {
   area: ServiceAreaPage;
+  showServiceAreasCrumb?: boolean;
 };
 
-export function ServiceAreaHero({ area }: ServiceAreaHeroProps) {
+export function ServiceAreaHero({ area, showServiceAreasCrumb = true }: ServiceAreaHeroProps) {
   return (
     <section className="w-full pt-6">
       <div className="mx-auto w-full max-w-[1280px] px-6 md:px-10">
@@ -13,12 +14,16 @@ export function ServiceAreaHero({ area }: ServiceAreaHeroProps) {
           <Link href="/" className="text-[#717171] transition-colors hover:text-[#222222]">
             Home
           </Link>
-          <span className="text-[#CCCCCC]" aria-hidden="true">
-            /
-          </span>
-          <Link href="/service-areas" className="text-[#717171] transition-colors hover:text-[#222222]">
-            Service Areas
-          </Link>
+          {showServiceAreasCrumb ? (
+            <>
+              <span className="text-[#CCCCCC]" aria-hidden="true">
+                /
+              </span>
+              <Link href="/service-areas" className="text-[#717171] transition-colors hover:text-[#222222]">
+                Service Areas
+              </Link>
+            </>
+          ) : null}
           <span className="text-[#CCCCCC]" aria-hidden="true">
             /
           </span>
