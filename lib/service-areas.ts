@@ -868,7 +868,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "One of Miami's most iconic cultural spaces featuring vibrant street art, open-air courtyards, and a unique creative atmosphere for large gatherings and events.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/Wynwood Walls.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Creative Events", "Brand Activations", "Private Celebrations"],
           },
@@ -880,7 +880,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A lively outdoor venue featuring open-air event spaces, food vendors, and entertainment areas in the heart of Wynwood.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/The Wynwood Marketplace.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Social Events", "Brand Activations", "Group Gatherings"],
           },
@@ -892,7 +892,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A modern boutique hotel with rooftop venues, stylish event spaces, and skyline views located in the center of the Wynwood Arts District.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/Arlo Wynwood.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Modern City Events", "Private Celebrations", "Skyline Views"],
           },
@@ -904,7 +904,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A large open-air venue with artistic architecture and flexible event spaces often used for creative events, pop-ups, and brand experiences.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/The Wynwood Garage.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Creative Events", "Brand Activations", "Pop-Ups"],
           },
@@ -916,7 +916,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for small to medium groups",
             description:
               "A vibrant restaurant and event venue known for its lively atmosphere, colorful design, and private event spaces in the heart of Wynwood.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/R House Wynwood.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Social Events", "Group Celebrations", "Private Events"],
           },
@@ -928,7 +928,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A popular Asian food hall and nightlife venue offering multiple spaces for private events, group gatherings, and celebrations.",
-            image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Wynwood/1800 lucky.jpg",
             address: "Wynwood, Miami, FL",
             tags: ["Social Events", "Nightlife Gatherings", "Group Outings"],
           },
@@ -952,7 +952,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A stunning waterfront museum with modern architecture, bayfront terraces, and panoramic views of Biscayne Bay and the Miami skyline.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Perez Art Museum Miami (PAMM).jpg",
             address: "Miami, FL",
             tags: ["Elegant Events", "Cultural Gatherings", "Upscale Celebrations"],
           },
@@ -964,7 +964,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A modern science museum featuring dramatic architecture, rooftop spaces, and unique event areas overlooking Biscayne Bay.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Frost Science Museum.jpg",
             address: "Miami, FL",
             tags: ["Unique Events", "Corporate Gatherings", "Large Celebrations"],
           },
@@ -976,7 +976,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for large groups",
             description:
               "A large tropical venue on Watson Island offering waterfront event spaces, gardens, and flexible outdoor areas for large gatherings.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Jungle Island.jpg",
             address: "Miami, FL",
             tags: ["Large Celebrations", "Festivals", "Corporate Events"],
           },
@@ -988,7 +988,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A stylish outdoor plaza surrounded by luxury boutiques and modern architecture, ideal for upscale gatherings and brand events.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Miami Design District.jpg",
             address: "Miami, FL",
             tags: ["Fashion Events", "Brand Activations", "Social Gatherings"],
           },
@@ -1000,7 +1000,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A striking architectural venue known for its circular theater design and dramatic event spaces used for high-end gatherings and performances.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Faena Forum.jpg",
             address: "Miami, FL",
             tags: ["Luxury Events", "Performances", "Corporate Gatherings"],
           },
@@ -1012,7 +1012,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A landmark downtown building offering private event spaces with spectacular views of the Miami skyline and waterfront.",
-            image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Miami/Miami Tower - Private Event Spaces.jpg",
             address: "Miami, FL",
             tags: ["Corporate Events", "Upscale Gatherings", "Private Events"],
           },
@@ -1036,7 +1036,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A beautifully restored historic venue featuring dramatic marble interiors, high ceilings, and one of the most iconic event spaces in downtown Miami.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/The Historic Alfred I. duPont Building.jpg",
             address: "Downtown Miami, FL",
             tags: ["Elegant Celebrations", "Formal Gatherings", "Historic Venue"],
           },
@@ -1048,7 +1048,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A luxury downtown hotel offering expansive ballrooms, modern event spaces, and premium services in the center of Miami's business district.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/JW Marriott Marquis Miami.jpg",
             address: "Downtown Miami, FL",
             tags: ["Corporate Events", "Upscale Celebrations", "Luxury Ballroom"],
           },
@@ -1060,7 +1060,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for large groups",
             description:
               "A landmark waterfront hotel featuring grand ballrooms and large event spaces overlooking Biscayne Bay.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/ InterContinental Miami.jpg",
             address: "Downtown Miami, FL",
             tags: ["Large Celebrations", "Corporate Gatherings", "Waterfront Venue"],
           },
@@ -1072,7 +1072,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for small to medium groups",
             description:
               "A modern food hall and rooftop venue offering multiple private event spaces with a trendy and lively atmosphere.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/The Citadel Miami.jpg",
             address: "Downtown Miami, FL",
             tags: ["Social Events", "Group Gatherings", "Private Events"],
           },
@@ -1084,7 +1084,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A contemporary hotel venue featuring modern interiors, rooftop areas, and flexible event spaces in the heart of downtown.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/ YOTEL Miami Event Spaces.jpg",
             address: "Downtown Miami, FL",
             tags: ["Modern City Events", "Private Celebrations", "Flexible Spaces"],
           },
@@ -1096,7 +1096,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A unique immersive venue known for its dramatic architecture and large projection-mapped event spaces in downtown Miami.",
-            image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Downtown Miami/The Temple House.jpg",
             address: "Downtown Miami, FL",
             tags: ["Creative Events", "Large Celebrations", "Experiential Venue"],
           },
@@ -1144,7 +1144,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A stylish waterfront hotel with rooftop venues and modern event spaces overlooking the Palm Harbor Marina.",
-            image: "/images/Areas/west-palm-beach-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/West Palm Beach/The Ben Hotel.jpg",
             address: "West Palm Beach, FL",
             tags: ["Modern Waterfront Events", "Celebrations", "Rooftop Venue"],
           },
@@ -1156,7 +1156,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A historic Gilded Age mansion offering elegant gardens and waterfront event spaces with views of the Intracoastal Waterway.",
-            image: "/images/Areas/west-palm-beach-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/West Palm Beach/Flagler Museum.jpg",
             address: "West Palm Beach, FL",
             tags: ["Elegant Outdoor Gatherings", "Formal Celebrations", "Historic Mansion"],
           },
@@ -1168,7 +1168,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for large groups",
             description:
               "A large downtown venue offering expansive halls and flexible event spaces for major gatherings, conferences, and exhibitions.",
-            image: "/images/Areas/west-palm-beach-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/West Palm Beach/Palm Beach County Convention Center.jpg",
             address: "West Palm Beach, FL",
             tags: ["Conferences", "Trade Shows", "Large Events"],
           },
@@ -1180,7 +1180,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A modern hotel venue located in downtown West Palm Beach featuring large ballrooms and contemporary event spaces.",
-            image: "/images/Areas/west-palm-beach-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/West Palm Beach/Hilton West Palm Beach.jpg",
             address: "West Palm Beach, FL",
             tags: ["Corporate Gatherings", "Upscale Celebrations", "Downtown Venue"],
           },
@@ -1204,7 +1204,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A luxury beachfront resort overlooking the Gulf of Mexico with elegant indoor ballrooms and outdoor oceanfront event spaces.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/The Ritz-Carlton, Naples.jpg",
             address: "Naples, FL",
             tags: ["Upscale Celebrations", "Destination Gatherings", "Beachfront Venue"],
           },
@@ -1216,7 +1216,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A large coastal resort with terraces, waterfront views, and expansive indoor event spaces near the beach.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/Naples Grande Beach Resort.jpg",
             address: "Naples, FL",
             tags: ["Resort Events", "Large Gatherings", "Waterfront Views"],
           },
@@ -1228,7 +1228,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A beachfront resort offering event spaces ranging from oceanfront lawns to elegant ballrooms and poolside venues.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/LaPlaya Beach & Golf Resort.jpg",
             address: "Naples, FL",
             tags: ["Coastal Celebrations", "Upscale Events", "Ballroom Options"],
           },
@@ -1240,7 +1240,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for small to medium groups",
             description:
               "A lush tropical garden venue with beautiful outdoor spaces and indoor facilities surrounded by botanical landscapes.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/Naples Botanical Garden.jpg",
             address: "Naples, FL",
             tags: ["Garden Events", "Elegant Outdoor Gatherings", "Indoor Options"],
           },
@@ -1252,7 +1252,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A waterfront resort and marina featuring scenic views, tropical courtyards, and flexible event spaces along the water.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/Naples Bay Resort & Marina.jpg",
             address: "Naples, FL",
             tags: ["Waterfront Events", "Private Celebrations", "Marina Views"],
           },
@@ -1264,9 +1264,93 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A private country club offering elegant indoor ballrooms and outdoor spaces overlooking lush golf course landscapes.",
-            image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
+            image: "/images/Venues/Naples/Vineyards Country Club.jpg",
             address: "Naples, FL",
             tags: ["Formal Gatherings", "Upscale Celebrations", "Golf Course Views"],
+          },
+        ],
+      },
+    },
+  }),
+  buildAreaPage({
+    slug: "islamorada",
+    name: "Islamorada",
+    heroImage: "/images/Areas/miami-beach-miami-white-trolley-transportation.jpg",
+    regionBadge: "Florida Keys · Travel available",
+    overrides: {
+      venues: {
+        items: [
+          {
+            emoji: "🏝️",
+            name: "Cheeca Lodge & Spa",
+            type: "Luxury resort / beachfront venue",
+            highlight: "Atlantic luxury",
+            capacity: "Ideal for medium to large groups",
+            description:
+              "A well-known oceanfront resort with tropical gardens, beachfront spaces, and large event areas overlooking the Atlantic Ocean.",
+            image: "/images/Venues/Islamorada/Cheeca Lodge & Spa.jpg",
+            address: "Islamorada, FL",
+            tags: ["Destination Events", "Upscale Gatherings", "Oceanfront Resort"],
+          },
+          {
+            emoji: "🌴",
+            name: "Islander Resort",
+            type: "Beachfront resort",
+            highlight: "Island spacious",
+            capacity: "Ideal for medium to large groups",
+            description:
+              "A spacious oceanfront resort set on more than 20 acres with beautiful beaches, lawns, and tropical scenery in the heart of Islamorada.",
+            image: "/images/Venues/Islamorada/Islander Resort.jpg",
+            address: "Islamorada, FL",
+            tags: ["Outdoor Celebrations", "Large Group Gatherings", "Tropical Scenery"],
+          },
+          {
+            emoji: "⚓",
+            name: "Three Waters Resort & Marina",
+            type: "Resort / marina venue",
+            highlight: "Marina modern",
+            capacity: "Ideal for medium groups",
+            description:
+              "A modern waterfront resort with marina views, private beach areas, and multiple outdoor spaces for events along the Atlantic Ocean.",
+            image: "/images/Venues/Islamorada/Three Waters Resort & Marina.jpg",
+            address: "Islamorada, FL",
+            tags: ["Waterfront Events", "Destination Celebrations", "Private Beach Areas"],
+          },
+          {
+            emoji: "🌅",
+            name: "Morada Bay Beach Cafe & Pierre's",
+            type: "Beachfront restaurant / event venue",
+            highlight: "Sunset beach",
+            capacity: "Ideal for small to medium groups",
+            description:
+              "A famous beachfront venue known for its sandy event spaces, sunset views, and relaxed Florida Keys atmosphere.",
+            image: "/images/Venues/Islamorada/Morada Bay Beach Cafe & Pierre's.jpg",
+            address: "Islamorada, FL",
+            tags: ["Sunset Gatherings", "Beachfront Celebrations", "Florida Keys Vibe"],
+          },
+          {
+            emoji: "🏖️",
+            name: "Amara Cay Resort",
+            type: "Beachfront resort",
+            highlight: "Tropical chic",
+            capacity: "Ideal for medium groups",
+            description:
+              "A stylish beachfront resort offering modern design, ocean views, and relaxed island vibes in the Florida Keys.",
+            image: "/images/Venues/Islamorada/Amara Cay Resort.jpg",
+            address: "Islamorada, FL",
+            tags: ["Tropical Destination Events", "Celebrations", "Ocean Views"],
+          },
+          {
+            emoji: "🍽️",
+            name: "Island Grill",
+            type: "Beachside restaurant / event venue",
+            highlight: "Casual waterfront",
+            capacity: "Ideal for medium groups",
+            description:
+              "A laid-back waterfront restaurant venue with sandy beach views and tropical surroundings in Islamorada.",
+            image: "/images/Venues/Islamorada/Island Grill.jpg",
+            address: "Islamorada, FL",
+            tags: ["Casual Celebrations", "Group Gatherings", "Beachside Venue"],
           },
         ],
       },
@@ -1288,7 +1372,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A historic waterfront venue along the Hillsborough River featuring industrial architecture, large open event spaces, and views of the Tampa skyline.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/Armature Works.jpg",
             address: "Tampa, FL",
             tags: ["Social Events", "Corporate Gatherings", "Large Celebrations"],
           },
@@ -1300,7 +1384,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A European-inspired venue in Tampa known for its elegant design, glass atrium, and sophisticated event spaces.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/Oxford Exchange.jpg",
             address: "Tampa, FL",
             tags: ["Elegant Gatherings", "Upscale Celebrations", "Sophisticated Venue"],
           },
@@ -1312,7 +1396,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A historic mansion built in the 1880s featuring landscaped gardens, outdoor terraces, and a classic ballroom setting.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/The Orlo House & Ballroom.jpg",
             address: "Tampa, FL",
             tags: ["Formal Gatherings", "Garden Celebrations", "Historic Mansion"],
           },
@@ -1324,7 +1408,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A modern museum venue located along the Hillsborough River with contemporary architecture and waterfront event spaces.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/Tampa Museum of Art.jpg",
             address: "Tampa, FL",
             tags: ["Cultural Events", "Upscale Gatherings", "Modern Architecture"],
           },
@@ -1336,7 +1420,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for large groups",
             description:
               "A large waterfront hotel with expansive ballrooms and multiple event spaces overlooking Tampa Bay and the downtown skyline.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/Tampa Marriott Water Street.jpg",
             address: "Tampa, FL",
             tags: ["Corporate Events", "Conferences", "Large Celebrations"],
           },
@@ -1348,7 +1432,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A luxury hotel featuring modern architecture, stylish event spaces, and terraces with views of the waterfront district.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Tampa/The Tampa EDITION.jpg",
             address: "Tampa, FL",
             tags: ["Modern City Events", "Upscale Celebrations", "Waterfront District"],
           },
@@ -1372,7 +1456,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A luxury beachfront resort featuring elegant ballrooms, outdoor lawns, and private beach areas overlooking the Gulf of Mexico.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/Sandpearl Resort.jpg",
             address: "Clearwater, FL",
             tags: ["Coastal Celebrations", "Upscale Gatherings", "Beachfront Venue"],
           },
@@ -1384,7 +1468,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A modern waterfront hotel located steps from the beach, offering event spaces with views of Pier 60 and the Gulf of Mexico.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/Wyndham Grand Clearwater Beach.jpg",
             address: "Clearwater, FL",
             tags: ["Beachside Events", "Social Celebrations", "Waterfront Views"],
           },
@@ -1396,7 +1480,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium to large groups",
             description:
               "A beachfront resort featuring rooftop terraces and elegant event spaces with panoramic views of the Gulf.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/Hyatt Regency Clearwater Beach Resort & Spa.jpg",
             address: "Clearwater, FL",
             tags: ["Coastal Celebrations", "Destination Gatherings", "Rooftop Terraces"],
           },
@@ -1408,7 +1492,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A lively Gulf-front resort known for its private beach areas, event spaces, and vibrant waterfront atmosphere.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/Shephard's Beach Resort.jpg",
             address: "Clearwater, FL",
             tags: ["Social Gatherings", "Waterfront Celebrations", "Beachfront Resort"],
           },
@@ -1420,7 +1504,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for small to medium groups",
             description:
               "A waterfront venue overlooking Clearwater Bay featuring indoor and outdoor spaces with scenic marina views.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/Clearwater Community Sailing Center.jpg",
             address: "Clearwater, FL",
             tags: ["Casual Gatherings", "Outdoor Celebrations", "Waterfront Venue"],
           },
@@ -1432,7 +1516,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
             capacity: "Ideal for medium groups",
             description:
               "A modern indoor venue located in Clearwater offering elegant banquet rooms designed for private events and celebrations.",
-            image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+            image: "/images/Venues/Clearwater/The District Event Venue.jpg",
             address: "Clearwater, FL",
             tags: ["Private Celebrations", "Corporate Gatherings", "Indoor Venue"],
           },

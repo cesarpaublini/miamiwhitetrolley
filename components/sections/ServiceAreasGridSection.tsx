@@ -120,8 +120,8 @@ const AREAS = [
   },
   {
     name: "Islamorada",
-    slug: null,
-    hasDetailPage: false,
+    slug: "/service-areas/islamorada",
+    hasDetailPage: true,
     region: "Florida Keys",
     tag: "Destination",
     tagColor: "#222222",
