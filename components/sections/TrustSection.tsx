@@ -8,7 +8,7 @@ export function TrustSection() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">
               Why Couples Choose Us
             </p>
             <h2 className={`${typographyStyles.h2} max-w-lg`}>

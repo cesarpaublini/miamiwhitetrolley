@@ -33,7 +33,7 @@ export function ServiceAreaLocalExpertiseSection({ area }: ServiceAreaLocalExper
           </div>
 
           <div className="max-w-xl flex-1">
-            <p className="text-[0.75rem] font-semibold text-[#FF385C]">{local.eyebrow}</p>
+            <p className="text-[0.75rem] font-semibold text-[#222222]">{local.eyebrow}</p>
             <h2
               className="mt-3 font-bold text-white"
               style={{

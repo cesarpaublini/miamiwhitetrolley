@@ -28,24 +28,24 @@ function GridIcon() {
 export function VehiclePhotoGallery({ name, images }: VehiclePhotoGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const galleryImages = useMemo(() => {
-    const source = images.filter(Boolean);
-    if (source.length === 0) {
-      return [];
-    }
+  const allImages = useMemo(() => images.filter(Boolean), [images]);
 
-    const normalized = [...source];
-    while (normalized.length < 5) {
-      normalized.push(source[0]);
+  const gridImages = useMemo(() => {
+    if (allImages.length === 0) return [];
+    const padded = [...allImages];
+    while (padded.length < 5) {
+      padded.push(allImages[0]);
     }
-    return normalized.slice(0, 5);
-  }, [images]);
+    return padded.slice(0, 5);
+  }, [allImages]);
 
-  if (galleryImages.length === 0) {
+  if (gridImages.length === 0) {
     return null;
   }
 
   const isLightboxOpen = activeIndex !== null;
+  const lightboxImages = allImages;
+  const lightboxIndex = activeIndex !== null ? Math.min(activeIndex, lightboxImages.length - 1) : 0;
 
   return (
     <>
@@ -61,13 +61,13 @@ export function VehiclePhotoGallery({ name, images }: VehiclePhotoGalleryProps) 
             aria-label={`Open photo 1 of ${name}`}
           >
             <img
-              src={galleryImages[0]}
+              src={gridImages[0]}
               alt={`${name} photo 1`}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           </button>
 
-          {galleryImages.slice(1).map((image, index) => (
+          {gridImages.slice(1).map((image, index) => (
             <button
               key={`${name}-gallery-${index + 1}`}
               type="button"
@@ -90,11 +90,11 @@ export function VehiclePhotoGallery({ name, images }: VehiclePhotoGalleryProps) 
           className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-xl border border-[#DDDDDD] bg-white px-4 py-2 text-[0.82rem] font-bold text-[#222222] shadow-sm"
         >
           <GridIcon />
-          Show all photos
+          Show all photos {lightboxImages.length > 0 ? `(${lightboxImages.length})` : ""}
         </button>
       </div>
 
-      {isLightboxOpen ? (
+      {isLightboxOpen && lightboxImages.length > 0 ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4">
           <button
             type="button"
@@ -106,7 +106,11 @@ export function VehiclePhotoGallery({ name, images }: VehiclePhotoGalleryProps) 
 
           <button
             type="button"
-            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev + galleryImages.length - 1) % galleryImages.length))}
+            onClick={() =>
+              setActiveIndex((prev) =>
+                prev === null ? 0 : (prev + lightboxImages.length - 1) % lightboxImages.length
+              )
+            }
             className="absolute left-4 rounded-full border border-white/30 px-3 py-2 text-sm font-semibold text-white"
             aria-label="Previous photo"
           >
@@ -114,14 +118,22 @@ export function VehiclePhotoGallery({ name, images }: VehiclePhotoGalleryProps) 
           </button>
 
           <img
-            src={galleryImages[activeIndex]}
-            alt={`${name} enlarged photo ${activeIndex + 1}`}
+            src={lightboxImages[lightboxIndex]}
+            alt={`${name} enlarged photo ${lightboxIndex + 1}`}
             className="max-h-[85vh] w-auto max-w-[92vw] rounded-xl object-contain"
           />
 
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/30 bg-black/40 px-3 py-1 text-sm font-semibold text-white">
+            {lightboxIndex + 1} / {lightboxImages.length}
+          </span>
+
           <button
             type="button"
-            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % galleryImages.length))}
+            onClick={() =>
+              setActiveIndex((prev) =>
+                prev === null ? 0 : (prev + 1) % lightboxImages.length
+              )
+            }
             className="absolute right-4 rounded-full border border-white/30 px-3 py-2 text-sm font-semibold text-white"
             aria-label="Next photo"
           >

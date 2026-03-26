@@ -23,7 +23,7 @@ export const OCCASIONS: Occasion[] = [
     id: "wedding",
     emoji: "💍",
     label: "Wedding",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Elegant wedding transportation with flawless timing",
     description:
       "From ceremony arrivals to reception departures, we coordinate every transfer so your wedding day stays smooth, stylish, and stress-free.",
@@ -47,7 +47,7 @@ export const OCCASIONS: Occasion[] = [
     id: "corporate-events",
     emoji: "🏢",
     label: "Corporate Events",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Professional corporate transportation with seamless coordination",
     description:
       "From executive arrivals to conference shuttles, we coordinate every transfer so your event stays polished, punctual, and stress-free.",
@@ -72,7 +72,7 @@ export const OCCASIONS: Occasion[] = [
     id: "dinner-transfers",
     emoji: "🍽️",
     label: "Dinner Transfers",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Stylish dinner transportation with smooth arrivals and returns",
     description:
       "From group dinners to special nights out, we coordinate transportation that feels easy, comfortable, and right on time.",
@@ -97,7 +97,7 @@ export const OCCASIONS: Occasion[] = [
     id: "event-shuttles",
     emoji: "🏨",
     label: "Event Shuttles",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Reliable event shuttle transportation with organized guest flow",
     description:
       "From hotels to venues and everything in between, we help move guests efficiently so your event stays on schedule.",
@@ -122,7 +122,7 @@ export const OCCASIONS: Occasion[] = [
     id: "company-outings",
     emoji: "🏢",
     label: "Company Outings",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Comfortable company outing transportation for teams and groups",
     description:
       "From team dinners to off-site activities, we coordinate transportation so your group can stay together and enjoy the day.",
@@ -147,7 +147,7 @@ export const OCCASIONS: Occasion[] = [
     id: "proms-school-events",
     emoji: "🎓",
     label: "Proms & School Events",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Safe and stylish transportation for proms and school events",
     description:
       "From prom nights to school celebrations, we provide organized group transportation that feels fun, polished, and dependable.",
@@ -172,7 +172,7 @@ export const OCCASIONS: Occasion[] = [
     id: "sports-events",
     emoji: "🏟️",
     label: "Sports Events",
-    accent: "#FF385C",
+    accent: "#222222",
     tagline: "Group transportation for sports events with easy game-day coordination",
     description:
       "From pre-game pickups to post-game returns, we provide reliable transportation that keeps your group together and on time.",

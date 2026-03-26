@@ -50,7 +50,7 @@ export function FleetVehicleGridSection() {
                 {vehicle.badge ? (
                   <span
                     className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold text-white"
-                    style={{ backgroundColor: "#FF385C" }}
+                    style={{ backgroundColor: "#222222" }}
                   >
                     {vehicle.badge}
                   </span>
@@ -64,7 +64,7 @@ export function FleetVehicleGridSection() {
               <div className="mt-4 space-y-3 px-1">
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-base font-bold text-[#1A1A1A]">{vehicle.name}</h3>
-                  <span className="text-[0.8rem] font-semibold text-[#FF385C]">Book -&gt;</span>
+                  <span className="text-[0.8rem] font-semibold text-[#222222]">Book -&gt;</span>
                 </div>
 
                 <p className="text-sm text-[#717171]">{vehicle.tagline}</p>
@@ -78,7 +78,7 @@ export function FleetVehicleGridSection() {
                     <span
                       key={`${vehicle.name}-${tag.trim()}`}
                       className="rounded-full px-3 py-1 text-[0.75rem] font-semibold"
-                      style={{ backgroundColor: "#FFF1F3", color: "#FF385C" }}
+                      style={{ backgroundColor: "#F5F5F5", color: "#222222" }}
                     >
                       {tag.trim()}
                     </span>

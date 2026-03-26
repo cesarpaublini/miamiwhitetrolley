@@ -11,7 +11,7 @@ export function LifestyleGallerySection() {
     <section className={sectionStyles.base}>
       <Container className="space-y-8">
         <header className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">
             Real Photos · No Stock Images
           </p>
           <h2 className={typographyStyles.h2}>

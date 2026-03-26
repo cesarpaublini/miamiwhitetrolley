@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
@@ -12,7 +13,7 @@ export function ServiceAreasShowcaseSection() {
     <section className={`${sectionStyles.base} bg-zinc-100/70`}>
       <Container className="space-y-8">
         <header className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">
             Serving South Florida &amp; Beyond
           </p>
           <h2 className={typographyStyles.h2}>Our Service Areas</h2>
@@ -35,7 +36,7 @@ export function ServiceAreasShowcaseSection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <Button href="#" variant="outline" size="lg" className="border-zinc-400">
+          <Button href="/service-areas" variant="outline" size="lg" className="border-zinc-400">
             View All Service Areas &rarr;
           </Button>
         </div>
@@ -54,12 +55,14 @@ function DestinationCard({
   tall?: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   return (
-    <article
+    <Link
+      href={`/service-areas/${slug}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative min-w-[180px] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 transition-shadow duration-300 md:min-w-0 ${
+      className={`group relative block min-w-[180px] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 transition-shadow duration-300 md:min-w-0 ${
         isHovered ? "shadow-lg" : "shadow-sm"
       } ${tall ? "h-[340px]" : "h-[220px]"}`}
     >
@@ -83,6 +86,6 @@ function DestinationCard({
           {name}
         </p>
       </div>
-    </article>
+    </Link>
   );
 }

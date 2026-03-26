@@ -15,7 +15,7 @@ export function ServiceAreaBookingSection({ area }: ServiceAreaBookingSectionPro
       <div className="mx-auto w-full max-w-[1280px] px-6 py-16 md:px-10 md:py-20">
         <div className="flex flex-col gap-12 lg:flex-row xl:gap-20">
           <div className="max-w-lg flex-1">
-            <p className="text-[0.75rem] font-semibold text-[#FF385C]">{booking.eyebrow}</p>
+            <p className="text-[0.75rem] font-semibold text-[#222222]">{booking.eyebrow}</p>
             <h2
               className="mb-4 mt-3 font-bold text-[#222222]"
               style={{
@@ -94,11 +94,11 @@ function BookingForm({ areaName }: { areaName: string }) {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-[#EBEBEB] p-8 text-center">
-        <span className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF1F3]">
+        <span className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#F5F5F5]">
           <svg aria-hidden="true" viewBox="0 0 20 20" className="h-6 w-6" fill="none">
             <path
               d="M4.5 10.5 8.3 14l7.2-8"
-              stroke="#FF385C"
+              stroke="#222222"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -112,7 +112,7 @@ function BookingForm({ areaName }: { areaName: string }) {
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-5 text-[0.82rem] font-semibold text-[#FF385C] underline underline-offset-2"
+          className="mt-5 text-[0.82rem] font-semibold text-[#222222] underline underline-offset-2"
         >
           Submit another request
         </button>
@@ -202,7 +202,7 @@ function BookingForm({ areaName }: { areaName: string }) {
 
       <button
         type="submit"
-        className="w-full rounded-xl bg-[#FF385C] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(255,56,92,0.35)] transition-colors duration-200 hover:bg-[#E00B41]"
+        className="w-full rounded-xl bg-[#222222] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors duration-200 hover:bg-[#000000]"
       >
         Request a Quote
       </button>

@@ -5,7 +5,7 @@ type VehicleTitleRowProps = {
 
 function StarIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5 fill-[#FF385C]">
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5 fill-[#222222]">
       <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.11.99 5.8L10 14.75l-5.2 2.78.99-5.8-4.21-4.11 5.82-.85L10 1.5z" />
     </svg>
   );
@@ -70,7 +70,7 @@ export function VehicleTitleRow({ name, badge }: VehicleTitleRowProps) {
           </span>
           <span>Miami, FL</span>
           {badge ? (
-            <span className="rounded-full bg-[#FF385C] px-3 py-0.5 text-[0.72rem] font-bold text-white">
+            <span className="rounded-full bg-[#222222] px-3 py-0.5 text-[0.72rem] font-bold text-white">
               {badge}
             </span>
           ) : null}
@@ -78,11 +78,11 @@ export function VehicleTitleRow({ name, badge }: VehicleTitleRowProps) {
       </div>
 
       <div className="flex items-center gap-4 text-[0.85rem] font-semibold text-[#222222]">
-        <button type="button" className="inline-flex items-center gap-1.5 transition-colors hover:text-[#FF385C]">
+        <button type="button" className="inline-flex items-center gap-1.5 transition-colors hover:text-[#222222]">
           <ShareIcon />
           Share
         </button>
-        <button type="button" className="inline-flex items-center gap-1.5 transition-colors hover:text-[#FF385C]">
+        <button type="button" className="inline-flex items-center gap-1.5 transition-colors hover:text-[#222222]">
           <SaveIcon />
           Save
         </button>
