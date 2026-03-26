@@ -12,7 +12,7 @@ export function ServiceAreaAboutSection({ area }: ServiceAreaAboutSectionProps) 
       <div className="mx-auto w-full max-w-[1280px] px-6 py-16 md:px-10 md:py-20">
         <div className="flex flex-col items-center gap-12 lg:flex-row xl:gap-20">
           <div className="max-w-xl flex-1">
-            <p className="mb-3 text-[0.75rem] font-semibold uppercase text-[#FF385C]">{about.eyebrow}</p>
+            <p className="mb-3 text-[0.75rem] font-semibold uppercase text-[#222222]">{about.eyebrow}</p>
             <h2
               className="mb-5 font-bold text-[#222222]"
               style={{

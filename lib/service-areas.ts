@@ -262,9 +262,9 @@ function buildAreaPage({
         "🔒 Fully licensed & bonded",
       ],
       contactOptions: [
-        { icon: "📞", label: "Call us", value: "(305) 555-0100" },
+        { icon: "📞", label: "Call us", value: "(786) 565-1088" },
         { icon: "💬", label: "WhatsApp", value: "Fast responses daily" },
-        { icon: "📧", label: "Email", value: "info@miamiwhitetrolley.com" },
+        { icon: "📧", label: "Email", value: "reservations@rumbatoursmiami.com" },
       ],
       formHeading: `Get a free ${name} quote`,
     },
@@ -1359,7 +1359,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
   buildAreaPage({
     slug: "tampa",
     name: "Tampa",
-    heroImage: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+    heroImage: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg",
     regionBadge: "Tampa Bay · Travel available",
     overrides: {
       venues: {
@@ -1443,7 +1443,7 @@ export const serviceAreaPages: ServiceAreaPage[] = [
   buildAreaPage({
     slug: "clearwater",
     name: "Clearwater",
-    heroImage: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+    heroImage: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg",
     regionBadge: "Tampa Bay · Travel available",
     overrides: {
       venues: {

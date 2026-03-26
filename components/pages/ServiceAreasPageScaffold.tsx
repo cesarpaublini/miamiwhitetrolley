@@ -7,7 +7,7 @@ export function ServiceAreasPageScaffold() {
     <main className="bg-white">
       <section className="border-b border-zinc-200 bg-zinc-50">
         <Container className="py-16 sm:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-500">Service Areas</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">Service Areas</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
             Premium group transportation across South Florida
           </h1>
@@ -18,7 +18,7 @@ export function ServiceAreasPageScaffold() {
           <div className="mt-8">
             <Link
               href="#coverage"
-              className="inline-flex items-center justify-center rounded-full bg-rose-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-rose-600"
+              className="inline-flex items-center justify-center rounded-full bg-[#222222] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#000000]"
             >
               Explore Coverage
             </Link>

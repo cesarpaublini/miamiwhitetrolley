@@ -46,7 +46,7 @@ export function ServiceAreaHero({ area, showServiceAreasCrumb = true }: ServiceA
           <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3.5 py-1.5 text-[0.75rem] font-bold text-[#484848] backdrop-blur-sm">
             {area.regionBadge}
           </span>
-          <span className="absolute right-5 top-5 rounded-full bg-[#FF385C] px-3.5 py-1.5 text-[0.75rem] font-bold text-white">
+          <span className="absolute right-5 top-5 rounded-full bg-[#222222] px-3.5 py-1.5 text-[0.75rem] font-bold text-white">
             {area.statusBadge}
           </span>
 

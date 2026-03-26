@@ -66,8 +66,8 @@ export const siteConfig = {
   name: "Miami White Trolley",
   description:
     "Premium white trolley transportation for weddings, private events, and unforgettable group experiences in South Florida.",
-  phone: "(305) 555-0147",
-  email: "hello@miamiwhitetrolley.com",
+  phone: "(786) 565-1088",
+  email: "reservations@rumbatoursmiami.com",
   location: "Miami, FL",
 };
 
@@ -108,25 +108,25 @@ export const luxuryFleetItems: LuxuryFleetItem[] = [
   {
     slug: "white-trolley",
     title: "White Wedding Trolleys",
-    details: "Iconic · Up to 40 guests · Most popular",
+    details: "Iconic · Up to 30 guests · Most popular",
     image: "/images/white-trolley-transportation-miami.jpg",
   },
   {
     slug: "green-trolley",
     title: "Green Trolleys",
-    details: "Classic · Up to 40 guests · Vintage charm",
+    details: "Classic · Up to 30 guests · Vintage charm",
     image: "/images/trolley-rental-miami.jpg",
   },
   {
     slug: "classic-lincoln",
-    title: "Classic Wedding Cars",
+    title: "Lincoln Continental",
     details: "Timeless · 2-4 guests · Grand entrance",
     image: "/images/lincoln-continental-classic-car-rental-miami.jpg",
   },
   {
     slug: "mini-coach",
     title: "Mini Coaches",
-    details: "Comfortable · Up to 30 guests · Group ready",
+    details: "Comfortable · Up to 36 guests · Group ready",
     image: "/images/Minibus-south-florida-transportation.jpg",
   },
   {
@@ -307,7 +307,7 @@ export const serviceAreaAdditionalItems: ServiceAreaShowcaseItem[] = [
   { name: "Wynwood", image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg" },
   { name: "Fort Lauderdale", image: "/images/Areas/fort-lauderdale-miami-white-trolley-transportation.jpg" },
   { name: "Naples", image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg" },
-  { name: "Tampa", image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png" },
+  { name: "Tampa", image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg" },
   { name: "Sarasota", image: "/images/Areas/Sarasota-miami-white-trolley-transportation.jpg" },
 ];
 
@@ -353,7 +353,7 @@ export const lifestyleGalleryItems: GalleryItem[] = [
   },
   {
     alt: "Bride walking near wedding trolley",
-    image: "/images/miami-wedding-trolley-bride-walking.jpg.jpg",
+    image: "/images/miami-wedding-trolley-bride-walking.jpg",
   },
   {
     alt: "Bridesmaids smiling in trolley",

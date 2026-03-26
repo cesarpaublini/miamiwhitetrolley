@@ -4,7 +4,7 @@ export function FleetReadyToBookSection() {
   return (
     <section className="w-full border-t border-[#EBEBEB] bg-[#F7F7F7]">
       <div className="mx-auto w-full max-w-[1280px] px-6 py-16 text-center md:px-10 md:py-20">
-        <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-widest text-[#FF385C]">
+        <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-widest text-[#222222]">
           Ready to book?
         </p>
 
@@ -22,8 +22,8 @@ export function FleetReadyToBookSection() {
 
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            href="#"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF385C] px-8 py-3.5 text-[0.9rem] font-semibold text-white transition-colors duration-200 hover:bg-[#e03150]"
+            href="/services#book"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#222222] px-8 py-3.5 text-[0.9rem] font-semibold text-white transition-colors duration-200 hover:bg-[#e03150]"
           >
             Book a Vehicle
             <svg
@@ -44,7 +44,7 @@ export function FleetReadyToBookSection() {
             </svg>
           </Link>
           <Link
-            href="#"
+            href="/services#book"
             className="inline-flex items-center justify-center rounded-full border border-[#DDDDDD] px-8 py-3.5 text-[0.9rem] font-semibold text-[#484848] transition-all duration-200 hover:border-[#222222] hover:text-[#222222]"
           >
             Get a Quote

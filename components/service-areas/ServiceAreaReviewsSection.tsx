@@ -2,7 +2,7 @@ import type { ServiceAreaPage } from "@/lib/service-areas";
 
 function StarIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 fill-[#FF385C]">
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 fill-[#222222]">
       <path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.11.99 5.8L10 14.75l-5.2 2.78.99-5.8-4.21-4.11 5.82-.85L10 1.5z" />
     </svg>
   );
@@ -43,7 +43,7 @@ export function ServiceAreaReviewsSection({ area }: ServiceAreaReviewsSectionPro
 
               <div className="border-t border-[#EBEBEB] pt-4">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#FF385C] text-[0.72rem] font-bold text-white">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#222222] text-[0.72rem] font-bold text-white">
                     {r.avatar}
                   </span>
                   <div>

@@ -9,12 +9,12 @@ export function WhyChooseMiamiSection() {
       <Container className="space-y-8">
         <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">
               Our Promise
             </p>
             <h2 className={typographyStyles.h2}>Why Choose Miami White Trolley</h2>
           </div>
-          <Button href="#" variant="outline" className="border-zinc-400">
+          <Button href="/services#book" variant="outline" className="border-zinc-400">
             Request a Quote &rarr;
           </Button>
         </header>
@@ -32,7 +32,7 @@ export function WhyChooseMiamiSection() {
                   <span className="text-5xl font-semibold leading-none tracking-tight text-zinc-200">
                     {item.number}
                   </span>
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50 text-lg text-rose-500">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#F5F5F5] text-lg text-[#222222]">
                     {item.icon}
                   </span>
                 </div>

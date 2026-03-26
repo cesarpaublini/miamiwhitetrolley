@@ -8,15 +8,23 @@ const dmSans = DM_Sans({
 });
 
 const services = [
-  "Wedding Transportation",
-  "Corporate Events",
-  "Private Charters",
-  "Prom & Quinceanera",
-  "One-Way Transfers",
+  { label: "Wedding Transportation", href: "/services" },
+  { label: "Corporate Events", href: "/services" },
+  { label: "Private Charters", href: "/services" },
+  { label: "Prom & Quinceañera", href: "/services" },
+  { label: "One-Way Transfers", href: "/services" },
 ];
 
-const company = ["About Us", "Our Fleet", "Service Areas", "Gallery", "Reviews"];
-const support = ["FAQ", "Contact Us", "Get a Quote", "Privacy Policy", "Terms of Service"];
+const company = [
+  { label: "Our Fleet", href: "/fleet" },
+  { label: "Service Areas", href: "/service-areas" },
+  { label: "Build Your Timeline", href: "/timeline-builder" },
+];
+
+const support = [
+  { label: "Contact Us", href: "/#contact" },
+  { label: "Get a Quote", href: "/services#book" },
+];
 
 export function Footer() {
   return (
@@ -31,22 +39,20 @@ export function Footer() {
             </p>
             <ul className="space-y-3 text-[0.875rem] text-[#AAAAAA]">
               <li>
-                <a href={`tel:${siteConfig.phone}`} className="inline-flex items-center gap-2 transition-colors hover:text-[#FF385C]">
+                <a href={`tel:${siteConfig.phone}`} className="inline-flex items-center gap-2 transition-colors hover:text-white">
                   <PhoneIcon />
                   {siteConfig.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-[#FF385C]">
+                <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-white">
                   <MailIcon />
                   {siteConfig.email}
                 </a>
               </li>
-              <li>
-                <a href="#" className="inline-flex items-center gap-2 transition-colors hover:text-[#FF385C]">
-                  <PinIcon />
-                  Miami, FL &amp; South Florida
-                </a>
+              <li className="inline-flex items-center gap-2">
+                <PinIcon />
+                Miami, FL &amp; South Florida
               </li>
             </ul>
             <div className="flex gap-3">
@@ -70,8 +76,8 @@ export function Footer() {
               </p>
             </div>
             <Link
-              href="#"
-              className="inline-flex h-auto items-center justify-center rounded-full bg-[#FF385C] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-colors hover:bg-[#ff2850]"
+              href="/services#book"
+              className="inline-flex h-auto items-center justify-center rounded-full bg-[#222222] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-colors hover:bg-white hover:text-[#111111]"
             >
               Book Now &rarr;
             </Link>
@@ -82,32 +88,21 @@ export function Footer() {
           <p className="text-[0.8rem] text-[#555555]">
             © {new Date().getFullYear()} Miami White Trolley. All rights reserved.
           </p>
-          <div className="flex gap-5 text-[0.8rem] text-[#555555]">
-            <Link href="#" className="transition-colors hover:text-[#999999]">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="transition-colors hover:text-[#999999]">
-              Terms of Service
-            </Link>
-            <Link href="#" className="transition-colors hover:text-[#999999]">
-              Sitemap
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterColumn({ title, items }: { title: string; items: string[] }) {
+function FooterColumn({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div className="flex flex-col gap-4">
       <h4 className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-white">{title}</h4>
       <ul className="space-y-3 text-[0.875rem] text-[#999999]">
         {items.map((item) => (
-          <li key={item}>
-            <Link href="#" className="transition-colors hover:text-white">
-              {item}
+          <li key={item.label}>
+            <Link href={item.href} className="transition-colors hover:text-white">
+              {item.label}
             </Link>
           </li>
         ))}
@@ -118,13 +113,12 @@ function FooterColumn({ title, items }: { title: string; items: string[] }) {
 
 function SocialLink({ label, icon }: { label: string; icon: React.ReactNode }) {
   return (
-    <a
-      href="#"
+    <span
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#333333] text-[#999999] transition-colors hover:border-[#FF385C] hover:text-[#FF385C]"
+      className="inline-flex h-9 w-9 cursor-default items-center justify-center rounded-full border border-[#333333] text-[#555555]"
     >
       {icon}
-    </a>
+    </span>
   );
 }
 

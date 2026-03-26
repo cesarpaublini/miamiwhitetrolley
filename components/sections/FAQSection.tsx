@@ -72,7 +72,7 @@ export function FAQSection() {
     <section className="border-t border-[#EBEBEB] bg-zinc-100/70 py-20 lg:py-24">
       <Container className="space-y-10">
         <header className="space-y-4">
-          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-rose-500">FAQ</p>
+          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#222222]">FAQ</p>
           <h2 className="text-[clamp(1.4rem,2.5vw,1.85rem)] font-bold tracking-tight text-zinc-900">
             Frequently Asked Questions
           </h2>
@@ -117,7 +117,7 @@ export function FAQSection() {
               Our team is happy to help you plan the perfect transportation experience.
             </p>
           </div>
-          <Button href="#" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
+          <Button href="/services#book" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
             Contact Us &rarr;
           </Button>
         </div>
@@ -150,12 +150,12 @@ function FAQItem({
         onClick={onToggle}
         className="flex w-full items-center gap-4 py-5 text-left"
       >
-        <span className="text-[0.8rem] font-semibold text-[#FF385C]">
+        <span className="text-[0.8rem] font-semibold text-[#222222]">
           {String(index + 1).padStart(2, "0")}
         </span>
         <span
           className={`flex-1 text-[1rem] font-semibold leading-[1.4] tracking-[-0.02em] ${
-            isOpen ? "text-rose-500" : "text-zinc-900"
+            isOpen ? "text-[#222222]" : "text-zinc-900"
           }`}
         >
           {faq.question}
@@ -163,7 +163,7 @@ function FAQItem({
         <span
           className="inline-flex h-6 w-6 items-center justify-center rounded-full transition-all duration-300"
           style={{
-            backgroundColor: isOpen ? "#FF385C" : "transparent",
+            backgroundColor: isOpen ? "#222222" : "transparent",
             border: isOpen ? "none" : "1px solid #E4E4E7",
             transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
           }}

@@ -12,7 +12,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Miami-Dade",
     tag: "Most Popular",
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "12 mi from Downtown",
     image: "/images/Areas/coral-gables-miami-white-trolley-transportation.jpg",
     description:
@@ -26,7 +26,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Broward",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "30 mi from Downtown",
     image: "/images/Areas/fort-lauderdale-miami-white-trolley-transportation.jpg",
     description:
@@ -40,7 +40,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Miami-Dade",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "8 mi from Downtown",
     image: "/images/Areas/coconut-grove-miami-white-trolley-transportation.jpg",
     description:
@@ -68,7 +68,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Miami-Dade",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "4 mi from Downtown",
     image: "/images/Areas/Wynwood-miami-white-trolley-transportation.jpg",
     description:
@@ -82,7 +82,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Miami-Dade",
     tag: "Core Coverage",
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "Local coverage",
     image: "/images/Areas/miami-miami-white-trolley-transportation.jpg",
     description:
@@ -96,7 +96,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Miami-Dade",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "Central district",
     image: "/images/Areas/downtown-miami-miami-white-trolley-transportation.jpg",
     description:
@@ -110,7 +110,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Palm Beach",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "72 mi from Downtown",
     image: "/images/Areas/west-palm-beach-miami-white-trolley-transportation.jpg",
     description:
@@ -138,7 +138,7 @@ const AREAS = [
     hasDetailPage: true,
     region: "Gulf Coast",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "126 mi from Downtown",
     image: "/images/Areas/Naples-miami-white-trolley-transportation.jpg",
     description:
@@ -152,9 +152,9 @@ const AREAS = [
     hasDetailPage: true,
     region: "Tampa Bay",
     tag: null,
-    tagColor: "#FF385C",
+    tagColor: "#222222",
     distance: "279 mi from Downtown",
-    image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+    image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg",
     description:
       "Large-scale charter options for Tampa events, conferences, and destination wedding transportation.",
     events: ["Conventions", "Corporate", "Destination Weddings"],
@@ -168,7 +168,7 @@ const AREAS = [
     tag: "Beach Events",
     tagColor: "#222222",
     distance: "292 mi from Downtown",
-    image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg.png",
+    image: "/images/Areas/Tampa-miami-white-trolley-transportation.jpg",
     description:
       "Transportation support for Clearwater beach weddings, group events, and destination charters.",
     events: ["Beach Weddings", "Private Events", "Corporate"],
@@ -202,7 +202,7 @@ export function ServiceAreasGridSection() {
       <section className="py-12 sm:py-16">
         <Container className="space-y-8">
           <header className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF385C]">Service Areas</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">Service Areas</p>
             <h1 className="text-4xl font-bold tracking-tight text-[#222222] sm:text-5xl">
               Explore our top service areas
             </h1>
@@ -249,7 +249,7 @@ export function ServiceAreasGridSection() {
           <div className="flex flex-col gap-10 lg:flex-row xl:gap-16">
             <div className="flex-1 max-w-lg">
               <p
-                className="mb-3 text-[0.75rem] font-semibold uppercase tracking-widest text-[#FF385C]"
+                className="mb-3 text-[0.75rem] font-semibold uppercase tracking-widest text-[#222222]"
               >
                 Ready to book?
               </p>
@@ -272,7 +272,7 @@ export function ServiceAreasGridSection() {
                   <div>
                     <p className="text-[0.875rem] font-bold text-[#222222]">Call us</p>
                     <p className="mt-0.5 text-[0.82rem] text-[#717171]">
-                      (305) 555-0100 · Available 8am - 10pm daily
+                      (786) 565-1088 · Available 8am - 10pm daily
                     </p>
                   </div>
                 </div>
@@ -293,7 +293,7 @@ export function ServiceAreasGridSection() {
                   </span>
                   <div>
                     <p className="text-[0.875rem] font-bold text-[#222222]">Email</p>
-                    <p className="mt-0.5 text-[0.82rem] text-[#717171]">info@miamiwhitetrolley.com</p>
+                    <p className="mt-0.5 text-[0.82rem] text-[#717171]">reservations@rumbatoursmiami.com</p>
                   </div>
                 </div>
               </div>
@@ -356,7 +356,7 @@ function AreaCard({ area }: { area: (typeof AREAS)[number] }) {
 
         <div className="mb-4 flex flex-wrap gap-2">
           {area.events.map((event) => (
-            <span key={event} className="rounded-full bg-[#FFF1F3] px-3 py-1 text-[0.72rem] font-semibold text-[#FF385C]">
+            <span key={event} className="rounded-full bg-[#F5F5F5] px-3 py-1 text-[0.72rem] font-semibold text-[#222222]">
               {event}
             </span>
           ))}
@@ -384,11 +384,11 @@ function AreaCard({ area }: { area: (typeof AREAS)[number] }) {
           <div className="mt-3 space-y-1.5 border-t border-[#EBEBEB] pt-3">
             {area.venues.map((venue) => (
               <div key={venue} className="flex items-center gap-2 text-[0.82rem] text-[#484848]">
-                <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#FFF1F3]">
+                <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#F5F5F5]">
                   <svg aria-hidden="true" viewBox="0 0 20 20" className="h-2.5 w-2.5" fill="none">
                     <path
                       d="M4.5 10.5 8.3 14l7.2-8"
-                      stroke="#FF385C"
+                      stroke="#222222"
                       strokeWidth="3.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -403,7 +403,7 @@ function AreaCard({ area }: { area: (typeof AREAS)[number] }) {
 
         <Link
           href={ctaHref}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] py-3 text-[0.85rem] font-bold text-white transition-colors duration-200 hover:bg-[#FF385C]"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] py-3 text-[0.85rem] font-bold text-white transition-colors duration-200 hover:bg-[#222222]"
         >
           {ctaLabel}
           <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none">
@@ -545,7 +545,7 @@ function BookingForm() {
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-[#FF385C] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(255,56,92,0.35)] transition-colors hover:bg-[#E00B41]"
+              className="w-full rounded-xl bg-[#222222] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#000000]"
             >
               Request a Quote
             </button>
@@ -556,11 +556,11 @@ function BookingForm() {
         </form>
       ) : (
         <div className="rounded-2xl border border-[#EBEBEB] p-8 text-center">
-            <span className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF1F3]">
+            <span className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#F5F5F5]">
               <svg aria-hidden="true" viewBox="0 0 20 20" className="h-6 w-6" fill="none">
                 <path
                   d="M4.5 10.5 8.3 14l7.2-8"
-                  stroke="#FF385C"
+                  stroke="#222222"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -574,7 +574,7 @@ function BookingForm() {
             <button
               type="button"
               onClick={() => setSubmitted(false)}
-              className="mt-5 text-[0.82rem] font-semibold text-[#FF385C] underline underline-offset-2"
+              className="mt-5 text-[0.82rem] font-semibold text-[#222222] underline underline-offset-2"
             >
               Submit another request
             </button>

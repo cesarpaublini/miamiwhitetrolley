@@ -17,7 +17,7 @@ export function ServiceAreaVenuesSection({ area }: ServiceAreaVenuesSectionProps
       <div className="mx-auto w-full max-w-[1280px] px-6 py-16 md:px-10 md:py-20">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-[#FF385C]">{venues.eyebrow}</p>
+            <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-[#222222]">{venues.eyebrow}</p>
             <h2
               className="mt-2 font-bold text-[#222222]"
               style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.2rem)" }}
@@ -76,7 +76,7 @@ export function ServiceAreaVenuesSection({ area }: ServiceAreaVenuesSectionProps
                   </div>
 
                   <div className="mb-3 flex items-center gap-2">
-                    <span className="rounded-full bg-[#FFF1F3] px-2.5 py-0.5 text-[0.7rem] font-bold text-[#FF385C]">
+                    <span className="rounded-full bg-[#F5F5F5] px-2.5 py-0.5 text-[0.7rem] font-bold text-[#222222]">
                       {venue.highlight}
                     </span>
                     <span className="text-[0.75rem] text-[#717171]">{venue.capacity}</span>
@@ -112,7 +112,7 @@ export function ServiceAreaVenuesSection({ area }: ServiceAreaVenuesSectionProps
                       <Link
                         href="#book"
                         onClick={(event) => event.stopPropagation()}
-                        className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] py-3 text-[0.85rem] font-bold text-white transition-colors hover:bg-[#FF385C]"
+                        className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] py-3 text-[0.85rem] font-bold text-white transition-colors hover:bg-[#222222]"
                       >
                         Book for {venue.name}
                       </Link>

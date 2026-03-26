@@ -12,7 +12,7 @@ function CheckIcon() {
     <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none">
       <path
         d="M4.5 10.5 8.3 14l7.2-8"
-        stroke="#FF385C"
+        stroke="#222222"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -35,125 +35,77 @@ function PhoneIcon() {
   );
 }
 
-function BookingCard() {
-  const [submitted, setSubmitted] = useState(false);
+function BookingCard({ vehicle }: { vehicle?: FleetVehicle }) {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [form, setForm] = useState({
+    event_date: "",
+    event_type: "",
+    group_size: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    notes: "",
+  });
+
+  const isTrolley = vehicle?.category === "Trolleys";
+  const isLincoln = vehicle?.slug === "classic-lincoln";
 
   const labelClass = "mb-1.5 block text-[0.78rem] font-bold uppercase text-[#222222]";
   const labelStyle = { letterSpacing: "0.02em" };
   const inputClass =
     "w-full rounded-xl border border-[#DDDDDD] px-4 py-3 text-[0.875rem] text-[#222222] focus:border-[#222222] focus:outline-none";
 
+  function set(field: keyof typeof form) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "fleet-vehicle-page",
+          source_page: vehicle ? `/fleet/${vehicle.slug}` : "/fleet",
+          vehicle_name: vehicle?.name ?? "",
+          vehicle_slug: vehicle?.slug ?? "",
+          vehicle_category: vehicle?.category ?? "",
+          ...form,
+        }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <div className="rounded-2xl border border-[#DDDDDD] p-6 shadow-[0_6px_32px_rgba(0,0,0,0.09)]">
       <div>
         <p className="font-extrabold text-[#222222]" style={{ fontSize: "1.3rem", letterSpacing: "-0.03em" }}>
-          From $850 <span className="text-[0.875rem] font-medium text-[#717171]">/ 5 hrs</span>
+          {isTrolley ? (
+            <>$360 <span className="text-[0.875rem] font-medium text-[#717171]">/ hr · 5 hr min</span></>
+          ) : isLincoln ? (
+            <>From $850 <span className="text-[0.875rem] font-medium text-[#717171]">/ 3 hrs</span></>
+          ) : (
+            <>From $850 <span className="text-[0.875rem] font-medium text-[#717171]">/ 5 hrs</span></>
+          )}
         </p>
         <div className="mt-2 mb-5 flex items-center gap-2 text-[0.82rem] text-[#717171]">
-          <span className="text-[#FF385C]">★★★★★</span>
+          <span className="text-[#222222]">★★★★★</span>
           <span className="font-bold text-[#222222]">5.0</span>
           <span>·</span>
           <span>200+ reviews</span>
         </div>
       </div>
 
-      {!submitted ? (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setSubmitted(true);
-          }}
-          className="space-y-4"
-        >
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="event-date">
-              Event date
-            </label>
-            <input id="event-date" type="date" className={inputClass} />
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="event-type">
-              Event type
-            </label>
-            <select id="event-type" className={inputClass} defaultValue="">
-              <option value="" disabled>
-                Select event type
-              </option>
-              <option>Wedding</option>
-              <option>Corporate Event</option>
-              <option>Private Charter</option>
-              <option>Prom</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="group-size">
-              Group size
-            </label>
-            <select id="group-size" className={inputClass} defaultValue="">
-              <option value="" disabled>
-                Select group size
-              </option>
-              <option>Up to 10</option>
-              <option>11-20</option>
-              <option>21-40</option>
-              <option>41+</option>
-            </select>
-          </div>
-
-          <hr className="border-[#EBEBEB]" />
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className={labelClass} style={labelStyle} htmlFor="first-name">
-                First name
-              </label>
-              <input id="first-name" type="text" className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass} style={labelStyle} htmlFor="last-name">
-                Last name
-              </label>
-              <input id="last-name" type="text" className={inputClass} />
-            </div>
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="email">
-              Email
-            </label>
-            <input id="email" type="email" className={inputClass} />
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="phone">
-              Phone
-            </label>
-            <input id="phone" type="tel" className={inputClass} />
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="notes">
-              Additional notes
-            </label>
-            <textarea id="notes" rows={3} className={inputClass} />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full rounded-xl bg-[#FF385C] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(255,56,92,0.35)] transition-colors hover:bg-[#E00B41]"
-          >
-            Send booking request
-          </button>
-
-          <p className="text-center text-[0.75rem] text-[#717171]">
-            You won&apos;t be charged yet. We&apos;ll confirm details first.
-          </p>
-        </form>
-      ) : (
+      {status === "success" ? (
         <div className="py-2 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF1F3]">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5F5F5]">
             <CheckIcon />
           </div>
           <h4 className="mt-4 text-base font-bold text-[#222222]">Request sent!</h4>
@@ -162,18 +114,101 @@ function BookingCard() {
           </p>
           <button
             type="button"
-            onClick={() => setSubmitted(false)}
-            className="mt-4 text-[0.85rem] font-semibold text-[#FF385C] underline underline-offset-2"
+            onClick={() => setStatus("idle")}
+            className="mt-4 text-[0.85rem] font-semibold text-[#222222] underline underline-offset-2"
           >
             Send another request
           </button>
         </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-event-date">
+              Event date
+            </label>
+            <input id="vc-event-date" type="date" required value={form.event_date} onChange={set("event_date")} className={inputClass} />
+          </div>
+
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-event-type">
+              Event type
+            </label>
+            <select id="vc-event-type" required value={form.event_type} onChange={set("event_type")} className={`${inputClass} bg-white`}>
+              <option value="" disabled>Select event type</option>
+              <option>Wedding</option>
+              <option>Corporate Event</option>
+              <option>Private Charter</option>
+              <option>Prom</option>
+              <option>Quinceañera</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-group-size">
+              Group size
+            </label>
+            <select id="vc-group-size" required value={form.group_size} onChange={set("group_size")} className={`${inputClass} bg-white`}>
+              <option value="" disabled>Select group size</option>
+              <option>Up to 10</option>
+              <option>11–20</option>
+              <option>21–40</option>
+              <option>41+</option>
+            </select>
+          </div>
+
+          <hr className="border-[#EBEBEB]" />
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className={labelClass} style={labelStyle} htmlFor="vc-first-name">First name</label>
+              <input id="vc-first-name" type="text" required value={form.first_name} onChange={set("first_name")} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass} style={labelStyle} htmlFor="vc-last-name">Last name</label>
+              <input id="vc-last-name" type="text" required value={form.last_name} onChange={set("last_name")} className={inputClass} />
+            </div>
+          </div>
+
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-email">Email</label>
+            <input id="vc-email" type="email" required value={form.email} onChange={set("email")} className={inputClass} />
+          </div>
+
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-phone">Phone</label>
+            <input id="vc-phone" type="tel" value={form.phone} onChange={set("phone")} className={inputClass} />
+          </div>
+
+          <div>
+            <label className={labelClass} style={labelStyle} htmlFor="vc-notes">Additional notes</label>
+            <textarea id="vc-notes" rows={3} value={form.notes} onChange={set("notes")} className={`${inputClass} resize-none`} />
+          </div>
+
+          {status === "error" && (
+            <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[0.82rem] text-red-700">
+              Something went wrong. Please try again or call us at (786) 565-1088.
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="w-full rounded-xl bg-[#222222] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#000000] disabled:opacity-60"
+          >
+            {status === "loading" ? "Sending…" : "Send booking request"}
+          </button>
+
+          <p className="text-center text-[0.75rem] text-[#717171]">
+            You won&apos;t be charged yet. We&apos;ll confirm details first.
+          </p>
+        </form>
       )}
 
       <div className="mt-4 flex items-center justify-center gap-2 border-t border-[#EBEBEB] pt-4 text-[0.8rem] text-[#717171]">
         <PhoneIcon />
         <span>
-          Or call us: <span className="font-bold text-[#222222]">(305) 555-0100</span>
+          Or call us: <span className="font-bold text-[#222222]">(786) 565-1088</span>
         </span>
       </div>
     </div>
@@ -181,7 +216,7 @@ function BookingCard() {
 }
 
 export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps) {
-  const tags = ["Up to 40 guests", "5-hr minimum", "Driver included", "Miami & South FL"];
+  const tags = [`${vehicle.capacity} guests`, "5-hr minimum", "Driver included", "Miami & South FL"];
   const highlights = [
     { emoji: "🪑", label: "Comfortable seating", value: vehicle.capacity },
     { emoji: "❄️", label: "Climate controlled", value: "Cold A/C and smooth ride" },
@@ -231,7 +266,7 @@ export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps)
       <div className="min-w-0 flex-1">
         <section className="border-b border-[#EBEBEB] py-8">
           <h2 className="text-[1.25rem] font-bold text-[#222222]" style={{ letterSpacing: "-0.02em" }}>
-            Iconic {vehicle.name} Wedding Trolley · {vehicle.capacity} Guests
+            {vehicle.name} · {vehicle.capacity} Guests
           </h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -288,7 +323,7 @@ export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps)
           <div className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
             {included.map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FFF1F3]">
+                <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#F5F5F5]">
                   <CheckIcon />
                 </span>
                 <p className="text-[0.875rem] text-[#484848]">{item}</p>
@@ -297,6 +332,8 @@ export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps)
           </div>
         </section>
 
+        {/* VIDEO SECTION — hidden until videos are ready. Re-enable by removing the {false && ...} wrapper */}
+        {false && (
         <section className="border-b border-[#EBEBEB] py-8">
           <h3 className="text-[1.05rem] font-bold text-[#222222]" style={{ letterSpacing: "-0.02em" }}>
             See it in action
@@ -335,24 +372,25 @@ export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps)
             )}
           </div>
         </section>
+        )}
 
         <section className="py-8">
           <div className="mb-5 flex items-center gap-2">
-            <span className="text-[#FF385C]">★★★★★</span>
+            <span className="text-[#222222]">★★★★★</span>
             <h3 className="text-[1.05rem] font-bold text-[#222222]">5.0 · 200+ reviews</h3>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {reviews.map((review) => (
               <article key={`${review.name}-${review.date}`} className="rounded-2xl border border-[#EBEBEB] p-5">
                 <div className="flex items-start">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FF385C] text-[0.72rem] font-bold text-white">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#222222] text-[0.72rem] font-bold text-white">
                     {review.initials}
                   </div>
                   <div className="ml-3">
                     <p className="text-[0.875rem] font-bold text-[#222222]">{review.name}</p>
                     <p className="text-[0.78rem] text-[#717171]">{review.date}</p>
                   </div>
-                  <span className="ml-auto text-[#FF385C]">★★★★★</span>
+                  <span className="ml-auto text-[#222222]">★★★★★</span>
                 </div>
                 <p className="mt-4 text-[0.875rem] leading-[1.65] text-[#484848]">{review.text}</p>
               </article>
@@ -363,7 +401,7 @@ export function VehicleTwoColumnLayout({ vehicle }: VehicleTwoColumnLayoutProps)
 
       <aside className="w-full shrink-0 lg:w-[380px] xl:w-[420px]">
         <div className="sticky top-[90px]">
-          <BookingCard />
+          <BookingCard vehicle={vehicle} />
         </div>
       </aside>
     </div>

@@ -12,7 +12,7 @@ export function ServiceAreaServicesSection({ area }: ServiceAreaServicesSectionP
     <section className="border-t border-[#EBEBEB] bg-[#F7F7F7]">
       <div className="mx-auto w-full max-w-[1280px] px-6 py-16 md:px-10 md:py-20">
         <header className="mb-10 max-w-2xl">
-          <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-[#FF385C]">
+          <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-[#222222]">
             {services.eyebrow}
           </p>
           <h2
@@ -48,7 +48,7 @@ export function ServiceAreaServicesSection({ area }: ServiceAreaServicesSectionP
           </div>
           <Link
             href="/fleet"
-            className="rounded-full bg-[#222222] px-7 py-3 text-[0.875rem] font-bold text-white transition-colors hover:bg-[#FF385C]"
+            className="rounded-full bg-[#222222] px-7 py-3 text-[0.875rem] font-bold text-white transition-colors hover:bg-[#222222]"
           >
             {services.fleetCtaLabel}
           </Link>
