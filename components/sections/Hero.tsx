@@ -22,7 +22,7 @@ export function Hero() {
               <Button href="/book" size="lg">
                 {heroContent.primaryCta}
               </Button>
-              <Button href="/book" variant="outline" size="lg">
+              <Button href="/contact" variant="outline" size="lg">
                 {heroContent.secondaryCta}
               </Button>
             </div>

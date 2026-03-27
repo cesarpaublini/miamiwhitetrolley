@@ -23,8 +23,9 @@ const company = [
 ];
 
 const support = [
-  { label: "Contact Us", href: "/book" },
-  { label: "Get a Quote", href: "/book" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Get a Quote", href: "/contact" },
+  { label: "Book Now", href: "/book" },
 ];
 
 export function Footer() {
