@@ -1,15 +1,16 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
-
 const TO = process.env.BOOKING_EMAIL_TO ?? "reservations@rumbatoursmiami.com";
+
+function createTransporter() {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    throw new Error(`Missing env vars: ${!user ? "GMAIL_USER " : ""}${!pass ? "GMAIL_APP_PASSWORD" : ""}`.trim());
+  }
+  return nodemailer.createTransport({ service: "gmail", auth: { user, pass } });
+}
 
 function row(label: string, value: string | undefined) {
   if (!value) return "";
@@ -435,6 +436,15 @@ export async function POST(request: Request) {
     ? buildFunnelConfirmationHtml(data)
     : buildConfirmationHtml(data as Record<string, string>);
 
+  let transporter;
+  try {
+    transporter = createTransporter();
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[booking] transporter init failed:", message);
+    return NextResponse.json({ error: "Server configuration error", detail: message }, { status: 500 });
+  }
+
   try {
     await Promise.all([
       transporter.sendMail({
@@ -456,7 +466,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[booking] email send failed", err);
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[booking] email send failed:", message);
+    return NextResponse.json({ error: "Failed to send email", detail: message }, { status: 500 });
   }
 }
