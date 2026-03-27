@@ -18,6 +18,7 @@ const services = [
 const company = [
   { label: "Our Fleet", href: "/fleet" },
   { label: "Service Areas", href: "/service-areas" },
+  { label: "Blog", href: "/blog" },
   { label: "Build Your Timeline", href: "/timeline-builder" },
 ];
 
