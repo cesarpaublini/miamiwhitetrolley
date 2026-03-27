@@ -113,7 +113,7 @@ export function OccasionSection({ occasion, reverse = false }: OccasionSectionPr
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="#book"
+                href="/book"
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-white transition-opacity hover:opacity-90"
                 style={{ background: occasion.accent, fontSize: "0.9rem", fontWeight: 700 }}
               >

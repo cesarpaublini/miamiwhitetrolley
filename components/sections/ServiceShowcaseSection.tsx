@@ -39,7 +39,7 @@ export function ServiceShowcaseSection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <Button href="/services#book" size="lg">
+          <Button href="/book" size="lg">
             Request a Quote &rarr;
           </Button>
         </div>

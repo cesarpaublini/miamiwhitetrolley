@@ -110,7 +110,7 @@ export function ServiceAreaVenuesSection({ area }: ServiceAreaVenuesSectionProps
                       </div>
 
                       <Link
-                        href="#book"
+                        href="/book"
                         onClick={(event) => event.stopPropagation()}
                         className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] py-3 text-[0.85rem] font-bold text-white transition-colors hover:bg-[#222222]"
                       >
