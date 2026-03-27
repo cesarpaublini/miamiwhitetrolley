@@ -12,7 +12,7 @@ export function LifestyleGallerySection() {
       <Container className="space-y-8">
         <header className="space-y-3">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#222222]">
-            Real Photos · No Stock Images
+            Miami Weddings · Captured Live
           </p>
           <h2 className={typographyStyles.h2}>
             See Our Trolleys in Action

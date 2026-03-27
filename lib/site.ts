@@ -80,7 +80,7 @@ export const heroContent = {
   primaryCta: "Book Now",
   secondaryCta: "Get a Quote",
   image: "/images/white-wedding-trolley-rental-south-florida.jpg",
-  highlights: ["5-Star Rated Service", "Miami & South Florida", "Licensed & Insured"],
+  highlights: ["Top Rated Service", "Miami & South Florida", "Licensed & Insured"],
 };
 
 export const fleetItems: FleetItem[] = [
