@@ -26,7 +26,7 @@ export function Navbar() {
           </nav>
 
           <div className="justify-self-end">
-            <Button href="#contact" size="md">
+            <Button href="/book" size="md">
               Book Now
             </Button>
           </div>

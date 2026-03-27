@@ -5,7 +5,7 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
   { label: "Our Fleet", href: "/fleet" },
-  { label: "Service Areas", href: "/service-areas" },
+  { label: "Areas", href: "/service-areas" },
   { label: "Services", href: "/services" },
   { label: "Weddings", href: "/services" },
   { label: "Build Your Timeline", href: "/timeline-builder" },

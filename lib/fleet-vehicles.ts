@@ -144,6 +144,16 @@ export const vehicles: FleetVehicle[] = [
   },
 ];
 
+// Maps fleet page slugs to booking funnel vehicle IDs
+export const fleetSlugToBookingId: Record<string, string> = {
+  'white-trolley': 'white-trolley',
+  'green-trolley': 'green-trolley',
+  'motorcoach': 'motorcoach',
+  'mini-coach': 'mini-coach',
+  'classic-lincoln': 'classic-car',
+  'sprinter-van': 'sprinter-van',
+}
+
 export function getVehicleBySlug(slug: string) {
   return vehicles.find((vehicle) => vehicle.slug === slug);
 }

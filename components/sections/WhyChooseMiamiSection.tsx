@@ -14,7 +14,7 @@ export function WhyChooseMiamiSection() {
             </p>
             <h2 className={typographyStyles.h2}>Why Choose Miami White Trolley</h2>
           </div>
-          <Button href="/services#book" variant="outline" className="border-zinc-400">
+          <Button href="/book" variant="outline" className="border-zinc-400">
             Request a Quote &rarr;
           </Button>
         </header>

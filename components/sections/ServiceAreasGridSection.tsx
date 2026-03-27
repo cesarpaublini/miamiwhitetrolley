@@ -312,7 +312,7 @@ export function ServiceAreasGridSection() {
 function AreaCard({ area }: { area: (typeof AREAS)[number] }) {
   const [open, setOpen] = useState(false);
 
-  const ctaHref = area.hasDetailPage && area.slug ? area.slug : "#book";
+  const ctaHref = area.hasDetailPage && area.slug ? area.slug : "/book";
   const ctaLabel = area.hasDetailPage ? `Explore ${area.name}` : `Book in ${area.name}`;
 
   return (

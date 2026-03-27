@@ -19,10 +19,10 @@ export function Hero() {
             </h1>
             <p className={`max-w-lg ${typographyStyles.body}`}>{heroContent.description}</p>
             <div className="flex flex-wrap items-center gap-3">
-              <Button href="/services#book" size="lg">
+              <Button href="/book" size="lg">
                 {heroContent.primaryCta}
               </Button>
-              <Button href="/services#book" variant="outline" size="lg">
+              <Button href="/book" variant="outline" size="lg">
                 {heroContent.secondaryCta}
               </Button>
             </div>

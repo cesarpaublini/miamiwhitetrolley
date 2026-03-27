@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { FleetVehicle } from "@/lib/fleet-vehicles";
+import { fleetSlugToBookingId } from "@/lib/fleet-vehicles";
+import { getBookingVehicleById } from "@/lib/booking/vehicles";
 
 type VehicleTwoColumnLayoutProps = {
   vehicle: FleetVehicle;
@@ -36,179 +39,69 @@ function PhoneIcon() {
 }
 
 function BookingCard({ vehicle }: { vehicle?: FleetVehicle }) {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [form, setForm] = useState({
-    event_date: "",
-    event_type: "",
-    group_size: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    notes: "",
-  });
+  const bookingId = vehicle?.slug ? (fleetSlugToBookingId[vehicle.slug] ?? null) : null;
+  const bookingVehicle = bookingId ? getBookingVehicleById(bookingId) : null;
+  const bookingUrl = bookingId ? `/book?vehicle=${bookingId}` : "/book";
 
-  const isTrolley = vehicle?.category === "Trolleys";
-  const isLincoln = vehicle?.slug === "classic-lincoln";
-
-  const labelClass = "mb-1.5 block text-[0.78rem] font-bold uppercase text-[#222222]";
-  const labelStyle = { letterSpacing: "0.02em" };
-  const inputClass =
-    "w-full rounded-xl border border-[#DDDDDD] px-4 py-3 text-[0.875rem] text-[#222222] focus:border-[#222222] focus:outline-none";
-
-  function set(field: keyof typeof form) {
-    return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
-      setForm((prev) => ({ ...prev, [field]: e.target.value }));
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "fleet-vehicle-page",
-          source_page: vehicle ? `/fleet/${vehicle.slug}` : "/fleet",
-          vehicle_name: vehicle?.name ?? "",
-          vehicle_slug: vehicle?.slug ?? "",
-          vehicle_category: vehicle?.category ?? "",
-          ...form,
-        }),
-      });
-      setStatus(res.ok ? "success" : "error");
-    } catch {
-      setStatus("error");
-    }
-  }
+  const priceLine = bookingVehicle
+    ? bookingVehicle.pricingModel === "flat-rate"
+      ? { price: `$${bookingVehicle.flatRatePrice}`, suffix: `flat · ${bookingVehicle.flatRateHours} hrs · incl. champagne` }
+      : { price: `$${bookingVehicle.hourlyRate}`, suffix: `/ hr · ${bookingVehicle.minHours} hr min` }
+    : null;
 
   return (
     <div className="rounded-2xl border border-[#DDDDDD] p-6 shadow-[0_6px_32px_rgba(0,0,0,0.09)]">
-      <div>
-        <p className="font-extrabold text-[#222222]" style={{ fontSize: "1.3rem", letterSpacing: "-0.03em" }}>
-          {isTrolley ? (
-            <>$360 <span className="text-[0.875rem] font-medium text-[#717171]">/ hr · 5 hr min</span></>
-          ) : isLincoln ? (
-            <>From $850 <span className="text-[0.875rem] font-medium text-[#717171]">/ 3 hrs</span></>
-          ) : (
-            <>From $850 <span className="text-[0.875rem] font-medium text-[#717171]">/ 5 hrs</span></>
-          )}
-        </p>
-        <div className="mt-2 mb-5 flex items-center gap-2 text-[0.82rem] text-[#717171]">
-          <span className="text-[#222222]">★★★★★</span>
-          <span className="font-bold text-[#222222]">5.0</span>
-          <span>·</span>
-          <span>200+ reviews</span>
-        </div>
+      {/* Pricing */}
+      <p className="font-extrabold text-[#222222]" style={{ fontSize: "1.3rem", letterSpacing: "-0.03em" }}>
+        {priceLine ? (
+          <>{priceLine.price} <span className="text-[0.875rem] font-medium text-[#717171]">{priceLine.suffix}</span></>
+        ) : (
+          <>Call for pricing</>
+        )}
+      </p>
+      <div className="mt-2 mb-6 flex items-center gap-2 text-[0.82rem] text-[#717171]">
+        <span className="text-[#222222]">★★★★★</span>
+        <span className="font-bold text-[#222222]">5.0</span>
+        <span>·</span>
+        <span>200+ reviews</span>
       </div>
 
-      {status === "success" ? (
-        <div className="py-2 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F5F5F5]">
-            <CheckIcon />
+      {/* What you get */}
+      <div className="mb-6 space-y-2">
+        {[
+          "Get an instant price estimate",
+          "No payment required now",
+          "We confirm within 24 hours",
+        ].map((item) => (
+          <div key={item} className="flex items-center gap-2.5">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#F5F5F5] shrink-0">
+              <CheckIcon />
+            </span>
+            <p className="text-[0.875rem] text-[#484848]">{item}</p>
           </div>
-          <h4 className="mt-4 text-base font-bold text-[#222222]">Request sent!</h4>
-          <p className="mt-2 text-[0.85rem] leading-[1.6] text-[#717171]">
-            We received your request and our team will contact you shortly with availability and pricing details.
-          </p>
-          <button
-            type="button"
-            onClick={() => setStatus("idle")}
-            className="mt-4 text-[0.85rem] font-semibold text-[#222222] underline underline-offset-2"
-          >
-            Send another request
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-event-date">
-              Event date
-            </label>
-            <input id="vc-event-date" type="date" required value={form.event_date} onChange={set("event_date")} className={inputClass} />
-          </div>
+        ))}
+      </div>
 
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-event-type">
-              Event type
-            </label>
-            <select id="vc-event-type" required value={form.event_type} onChange={set("event_type")} className={`${inputClass} bg-white`}>
-              <option value="" disabled>Select event type</option>
-              <option>Wedding</option>
-              <option>Corporate Event</option>
-              <option>Private Charter</option>
-              <option>Prom</option>
-              <option>Quinceañera</option>
-              <option>Other</option>
-            </select>
-          </div>
+      {/* Primary CTA */}
+      <Link
+        href={bookingUrl}
+        className="block w-full rounded-xl bg-[#222222] py-4 text-center text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#000000]"
+      >
+        Book the {vehicle?.name ?? "Vehicle"} →
+      </Link>
 
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-group-size">
-              Group size
-            </label>
-            <select id="vc-group-size" required value={form.group_size} onChange={set("group_size")} className={`${inputClass} bg-white`}>
-              <option value="" disabled>Select group size</option>
-              <option>Up to 10</option>
-              <option>11–20</option>
-              <option>21–40</option>
-              <option>41+</option>
-            </select>
-          </div>
+      <p className="mt-2.5 text-center text-[0.75rem] text-[#717171]">
+        Takes 2 minutes · No credit card needed
+      </p>
 
-          <hr className="border-[#EBEBEB]" />
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className={labelClass} style={labelStyle} htmlFor="vc-first-name">First name</label>
-              <input id="vc-first-name" type="text" required value={form.first_name} onChange={set("first_name")} className={inputClass} />
-            </div>
-            <div>
-              <label className={labelClass} style={labelStyle} htmlFor="vc-last-name">Last name</label>
-              <input id="vc-last-name" type="text" required value={form.last_name} onChange={set("last_name")} className={inputClass} />
-            </div>
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-email">Email</label>
-            <input id="vc-email" type="email" required value={form.email} onChange={set("email")} className={inputClass} />
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-phone">Phone</label>
-            <input id="vc-phone" type="tel" value={form.phone} onChange={set("phone")} className={inputClass} />
-          </div>
-
-          <div>
-            <label className={labelClass} style={labelStyle} htmlFor="vc-notes">Additional notes</label>
-            <textarea id="vc-notes" rows={3} value={form.notes} onChange={set("notes")} className={`${inputClass} resize-none`} />
-          </div>
-
-          {status === "error" && (
-            <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[0.82rem] text-red-700">
-              Something went wrong. Please try again or call us at (786) 565-1088.
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full rounded-xl bg-[#222222] py-4 text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#000000] disabled:opacity-60"
-          >
-            {status === "loading" ? "Sending…" : "Send booking request"}
-          </button>
-
-          <p className="text-center text-[0.75rem] text-[#717171]">
-            You won&apos;t be charged yet. We&apos;ll confirm details first.
-          </p>
-        </form>
-      )}
-
-      <div className="mt-4 flex items-center justify-center gap-2 border-t border-[#EBEBEB] pt-4 text-[0.8rem] text-[#717171]">
+      {/* Secondary — phone */}
+      <div className="mt-5 flex items-center justify-center gap-2 border-t border-[#EBEBEB] pt-4 text-[0.8rem] text-[#717171]">
         <PhoneIcon />
         <span>
-          Or call us: <span className="font-bold text-[#222222]">(786) 565-1088</span>
+          Questions?{" "}
+          <a href="tel:+17865651088" className="font-bold text-[#222222] hover:underline">
+            (786) 565-1088
+          </a>
         </span>
       </div>
     </div>

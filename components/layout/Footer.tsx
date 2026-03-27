@@ -23,8 +23,8 @@ const company = [
 ];
 
 const support = [
-  { label: "Contact Us", href: "/#contact" },
-  { label: "Get a Quote", href: "/services#book" },
+  { label: "Contact Us", href: "/book" },
+  { label: "Get a Quote", href: "/book" },
 ];
 
 export function Footer() {
@@ -77,7 +77,7 @@ export function Footer() {
               </p>
             </div>
             <Link
-              href="/services#book"
+              href="/book"
               className="inline-flex h-auto items-center justify-center rounded-full bg-[#222222] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-colors hover:bg-white hover:text-[#111111]"
             >
               Book Now &rarr;
