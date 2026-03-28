@@ -4,10 +4,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const BASE = 'https://miamiwhitetrolley.com'
+
 export const metadata: Metadata = {
-  title: 'Blog | Miami White Trolley',
+  title: 'Wedding Transportation Tips & Miami Event Planning | Blog',
   description:
     'Wedding transportation tips, planning guides, and Miami venue spotlights from the Miami White Trolley team.',
+  alternates: { canonical: `${BASE}/blog` },
+  openGraph: {
+    title: 'Wedding Transportation Tips & Miami Event Planning | Blog',
+    description: 'Planning guides, venue spotlights, and expert advice for your Miami event transportation.',
+    url: `${BASE}/blog`,
+    siteName: 'Miami White Trolley',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wedding Transportation Tips & Miami Event Planning | Blog',
+    description: 'Planning guides, venue spotlights, and expert advice for your Miami event transportation.',
+  },
 }
 
 export default async function BlogPage() {

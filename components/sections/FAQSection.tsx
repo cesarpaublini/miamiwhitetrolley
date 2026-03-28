@@ -62,6 +62,16 @@ const faqs: FAQ[] = [
   },
 ];
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+}
+
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const half = Math.ceil(faqs.length / 2);
@@ -70,6 +80,10 @@ export function FAQSection() {
 
   return (
     <section className="border-t border-[#EBEBEB] bg-zinc-100/70 py-20 lg:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Container className="space-y-10">
         <header className="space-y-4">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#222222]">FAQ</p>

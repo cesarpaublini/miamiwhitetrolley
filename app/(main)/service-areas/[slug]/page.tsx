@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: ServiceAreaPageProps): Promis
     };
   }
 
-  const canonical = `/service-areas/${area.slug}`;
+  const canonical = `https://miamiwhitetrolley.com/service-areas/${area.slug}`;
 
   return {
     title: area.seoTitle,
@@ -62,6 +62,8 @@ export default async function ServiceAreaDetailPage({ params }: ServiceAreaPageP
     notFound();
   }
 
+  const BASE = 'https://miamiwhitetrolley.com';
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -72,9 +74,19 @@ export default async function ServiceAreaDetailPage({ params }: ServiceAreaPageP
       name: "Miami White Trolley",
     },
     serviceType: "Wedding and event transportation",
-    url: `/service-areas/${area.slug}`,
+    url: `${BASE}/service-areas/${area.slug}`,
     image: area.heroImage,
     description: area.seoDescription,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Service Areas", item: `${BASE}/service-areas` },
+      { "@type": "ListItem", position: 3, name: area.name, item: `${BASE}/service-areas/${area.slug}` },
+    ],
   };
 
   return (
@@ -89,6 +101,10 @@ export default async function ServiceAreaDetailPage({ params }: ServiceAreaPageP
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </main>
   );

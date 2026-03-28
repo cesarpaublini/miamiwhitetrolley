@@ -3,9 +3,22 @@ import { ContactForm } from '@/components/contact/ContactForm'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Miami White Trolley',
+  title: 'Contact Miami White Trolley | Get a Quote',
   description:
-    'Get in touch with Miami White Trolley. Ask a question, request a custom quote, or tell us about your event.',
+    'Get in touch with Miami White Trolley. Ask a question, request a custom quote, or tell us about your event in Miami or South Florida.',
+  alternates: { canonical: 'https://miamiwhitetrolley.com/contact' },
+  openGraph: {
+    title: 'Contact Miami White Trolley | Get a Quote',
+    description: 'Ask a question or request a custom quote for your Miami wedding or event transportation.',
+    url: 'https://miamiwhitetrolley.com/contact',
+    siteName: 'Miami White Trolley',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Contact Miami White Trolley | Get a Quote',
+    description: 'Ask a question or request a custom quote for your Miami wedding or event transportation.',
+  },
 }
 
 const CONTACT_METHODS = [

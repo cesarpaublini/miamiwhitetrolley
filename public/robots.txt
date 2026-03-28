@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block CMS admin
+Disallow: /keystatic/
+
+Sitemap: https://miamiwhitetrolley.com/sitemap.xml

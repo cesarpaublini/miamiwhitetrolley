@@ -5,6 +5,19 @@ export const metadata: Metadata = {
   title: "Miami Transportation Services | Trolleys, Sprinters, Mini Coaches & More",
   description:
     "Explore Miami White Trolley transportation services for weddings, corporate events, guest shuttles, hotel transportation, airport transfers, private events, and group travel with trolleys, mini coaches, sprinter vans, limousines, SUVs, classic cars, and motor coaches.",
+  alternates: { canonical: 'https://miamiwhitetrolley.com/services' },
+  openGraph: {
+    title: "Miami Transportation Services | Trolleys, Sprinters, Mini Coaches & More",
+    description: "Wedding trolleys, sprinter vans, mini coaches, and more for events across Miami and South Florida.",
+    url: 'https://miamiwhitetrolley.com/services',
+    siteName: 'Miami White Trolley',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Miami Transportation Services | Trolleys, Sprinters, Mini Coaches & More",
+    description: "Wedding trolleys, sprinter vans, mini coaches, and more for events across Miami and South Florida.",
+  },
 };
 
 

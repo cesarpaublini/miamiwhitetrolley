@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: VehiclePageProps): Promise<Me
 
   const title = `${vehicle.name} Rentals in Miami | Miami White Trolley`;
   const description = `${vehicle.description} Capacity: ${vehicle.capacity}. Ideal for ${vehicle.ideal}.`;
-  const url = `/fleet/${vehicle.slug}`;
+  const url = `https://miamiwhitetrolley.com/fleet/${vehicle.slug}`;
 
   return {
     title,
@@ -62,6 +62,8 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
     notFound();
   }
 
+  const BASE = 'https://miamiwhitetrolley.com';
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -74,7 +76,17 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
     },
     category: vehicle.category,
     image: vehicle.image,
-    url: `/fleet/${vehicle.slug}`,
+    url: `${BASE}/fleet/${vehicle.slug}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Fleet", item: `${BASE}/fleet` },
+      { "@type": "ListItem", position: 3, name: vehicle.name, item: `${BASE}/fleet/${vehicle.slug}` },
+    ],
   };
 
   return (
@@ -83,6 +95,10 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </>
   );

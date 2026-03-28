@@ -157,3 +157,7 @@ export const fleetSlugToBookingId: Record<string, string> = {
 export function getVehicleBySlug(slug: string) {
   return vehicles.find((vehicle) => vehicle.slug === slug);
 }
+
+export function getAllVehicleSlugs(): string[] {
+  return vehicles.map((v) => v.slug);
+}
