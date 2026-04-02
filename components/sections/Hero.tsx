@@ -1,6 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
 import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
+import { PromoHeroBadge } from "@/components/ui/PromoHeroBadge";
 import { heroContent, siteConfig } from "@/lib/site";
 import { sectionStyles, typographyStyles } from "@/lib/styles";
 
@@ -51,6 +52,9 @@ export function Hero() {
             <p className="text-sm font-medium text-zinc-600">
               Trolleys from <span className="font-bold text-zinc-900">$350/hr</span> &nbsp;·&nbsp; No hidden fees
             </p>
+
+            {/* Promo badge — renders only when a promotion is active */}
+            <PromoHeroBadge />
 
             {/* Single CTA */}
             <div>

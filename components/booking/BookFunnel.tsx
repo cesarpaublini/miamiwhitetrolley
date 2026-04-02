@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import type { BookingDraft, StepId, VehicleId } from '@/lib/booking/types'
 import { validateStep, draftToSubmission } from '@/lib/booking/engine'
 import { trackFunnelStepComplete, trackFunnelStepViewed, trackBookingSubmitted, trackPhoneClick } from '@/lib/analytics'
+import { getCurrentPromotion, getPromoVariant, getDiscount, qualifiesForPromo } from '@/lib/promotions'
 import { getBookingVehicleById } from '@/lib/booking/vehicles'
 import { BookingProgress } from './BookingProgress'
 import { BookingSummary } from './BookingSummary'
@@ -170,6 +171,20 @@ export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: bo
 
     try {
       const payload = draftToSubmission(draft)
+
+      // Attach promo data if this booking qualifies
+      const promo = getCurrentPromotion()
+      if (promo && qualifiesForPromo(promo, draft.vehicleId, draft.hours)) {
+        const variant = getPromoVariant()
+        const amount = getDiscount(promo, variant)
+        Object.assign(payload, {
+          promoId: promo.id,
+          promoLabel: promo.label,
+          promoVariant: variant,
+          promoDiscount: amount,
+        })
+      }
+
       const res = await fetch('/api/booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

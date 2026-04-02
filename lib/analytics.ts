@@ -91,3 +91,14 @@ export function trackFunnelStepViewed(step: number, stepName: string) {
 export function trackFleetLinkClick(vehicleId: string) {
   track('fleet_link_click', { vehicle_id: vehicleId })
 }
+
+// ─── Promotions ───────────────────────────────────────────────────────────────
+
+export function trackPromoView(promoId: string, variant: string, discount: number) {
+  track('promo_view', { promo_id: promoId, variant, discount })
+}
+
+export function trackPromoQualified(promoId: string, variant: string, discount: number) {
+  track('promo_qualified', { promo_id: promoId, variant, discount })
+  fbtrack('AddToCart', { content_name: `Promo ${promoId}`, value: discount, currency: 'USD' })
+}

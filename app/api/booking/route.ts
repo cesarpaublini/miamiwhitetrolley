@@ -172,6 +172,16 @@ function buildFunnelHtml(data: Record<string, unknown>): string {
             ${priceDisplay ? r("Estimated Price", priceDisplay) : ""}
           </table>
 
+          ${data.promoId
+            ? `<p style="margin:20px 0 16px;font-size:13px;font-weight:700;color:#888;letter-spacing:0.1em;text-transform:uppercase">Promotion Applied</p>
+               <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #d1fae5;background:#f0fdf4">
+                 ${r("Promo ID", data.promoId)}
+                 ${r("Label", data.promoLabel)}
+                 ${r("Discount", `$${data.promoDiscount} off`)}
+                 ${r("Variant", data.promoVariant)}
+               </table>`
+            : ""}
+
           ${data.notes
             ? `<p style="margin:20px 0 16px;font-size:13px;font-weight:700;color:#888;letter-spacing:0.1em;text-transform:uppercase">Notes</p>
                <div style="background:#f7f7f7;border-radius:8px;padding:14px 16px;color:#333;font-size:14px;line-height:1.6">${data.notes}</div>`
@@ -275,7 +285,18 @@ function buildFunnelConfirmationHtml(data: Record<string, unknown>): string {
             ${data.notes ? r("Notes", data.notes) : ""}
           </table>
 
-          <table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7f7;border-radius:10px">
+          ${data.promoDiscount
+            ? `<table width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #d1fae5;background:#f0fdf4;margin-top:20px">
+                <tr>
+                  <td style="padding:16px 20px">
+                    <p style="margin:0;font-size:15px;font-weight:700;color:#065f46">🎉 $${data.promoDiscount} off applied to your booking</p>
+                    <p style="margin:6px 0 0;font-size:13px;color:#047857">Our team will honor this discount when confirming your reservation.</p>
+                  </td>
+                </tr>
+              </table>`
+            : ""}
+
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7f7;border-radius:10px;margin-top:20px">
             <tr><td style="padding:20px 24px">
               <p style="margin:0 0 12px;font-size:13px;font-weight:700;color:#888;letter-spacing:0.1em;text-transform:uppercase">Need to reach us?</p>
               <p style="margin:0 0 8px;font-size:14px;color:#333">
