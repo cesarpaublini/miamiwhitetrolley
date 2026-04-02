@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { FleetVehicle } from "@/lib/fleet-vehicles";
 import { fleetSlugToBookingId } from "@/lib/fleet-vehicles";
 import { getBookingVehicleById } from "@/lib/booking/vehicles";
+import { trackCtaClick, trackPhoneClick } from "@/lib/analytics";
 
 type VehicleTwoColumnLayoutProps = {
   vehicle: FleetVehicle;
@@ -85,6 +86,7 @@ function BookingCard({ vehicle }: { vehicle?: FleetVehicle }) {
       {/* Primary CTA */}
       <Link
         href={bookingUrl}
+        onClick={() => trackCtaClick(`Book the ${vehicle?.name ?? 'Vehicle'}`, 'fleet-vehicle-page')}
         className="block w-full rounded-xl bg-[#222222] py-4 text-center text-[0.9375rem] font-bold text-white shadow-[0_2px_16px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#000000]"
       >
         Book the {vehicle?.name ?? "Vehicle"} →
@@ -99,7 +101,7 @@ function BookingCard({ vehicle }: { vehicle?: FleetVehicle }) {
         <PhoneIcon />
         <span>
           Questions?{" "}
-          <a href="tel:+17865651088" className="font-bold text-[#222222] hover:underline">
+          <a href="tel:+17865651088" onClick={() => trackPhoneClick('fleet-vehicle-page')} className="font-bold text-[#222222] hover:underline">
             (786) 565-1088
           </a>
         </span>

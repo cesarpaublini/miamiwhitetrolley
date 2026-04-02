@@ -1,6 +1,9 @@
+'use client'
+
 import Link from "next/link";
 import { DM_Sans } from "next/font/google";
 import { siteConfig } from "@/lib/site";
+import { trackCtaClick, trackPhoneClick } from "@/lib/analytics";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -41,7 +44,7 @@ export function Footer() {
             </p>
             <ul className="space-y-3 text-[0.875rem] text-[#AAAAAA]">
               <li>
-                <a href={`tel:${siteConfig.phone}`} className="inline-flex items-center gap-2 transition-colors hover:text-white">
+                <a href={`tel:${siteConfig.phone}`} onClick={() => trackPhoneClick('footer')} className="inline-flex items-center gap-2 transition-colors hover:text-white">
                   <PhoneIcon />
                   {siteConfig.phone}
                 </a>
@@ -79,6 +82,7 @@ export function Footer() {
             </div>
             <Link
               href="?book=1"
+              onClick={() => trackCtaClick('Book Now', 'footer')}
               className="inline-flex h-auto items-center justify-center rounded-full bg-[#222222] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-colors hover:bg-white hover:text-[#111111]"
             >
               Book Now &rarr;
