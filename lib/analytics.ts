@@ -65,4 +65,29 @@ export function trackWhatsAppClick() {
 
 export function trackCtaClick(label: string, location: string) {
   track('cta_click', { label, location })
+  fbtrack('ViewContent', { content_name: label, content_category: location })
+}
+
+export function trackPhoneClick(location: string) {
+  track('phone_click', { location })
+}
+
+export function trackServiceTypeSelected(serviceType: string) {
+  track('service_type_selected', { service_type: serviceType })
+}
+
+export function trackFAQOpen(question: string) {
+  track('faq_open', { question })
+}
+
+export function trackFunnelAbandoned(lastStep: number) {
+  track('funnel_abandoned', { last_step: lastStep })
+}
+
+export function trackFunnelStepViewed(step: number, stepName: string) {
+  track('funnel_step_viewed', { step_number: step, step_name: stepName })
+}
+
+export function trackFleetLinkClick(vehicleId: string) {
+  track('fleet_link_click', { vehicle_id: vehicleId })
 }

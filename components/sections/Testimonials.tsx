@@ -1,5 +1,5 @@
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
+import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { testimonialItems } from "@/lib/site";
 
 export function Testimonials() {
@@ -54,9 +54,7 @@ export function Testimonials() {
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href="?book=1" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
-            Book Your Trolley &rarr;
-          </Button>
+          <TrackedBookButton label="Book Your Trolley →" location="testimonials" size="lg" className="px-7 py-3.5 h-auto text-[0.9rem]" />
         </div>
       </Container>
     </section>

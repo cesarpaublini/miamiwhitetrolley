@@ -3,7 +3,7 @@
 import { useEffect, useCallback, Suspense, useState, useRef } from 'react'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import type { StepId } from '@/lib/booking/types'
-import { trackBookModalOpen } from '@/lib/analytics'
+import { trackBookModalOpen, trackFunnelAbandoned } from '@/lib/analytics'
 import { BookFunnel } from './BookFunnel'
 
 const STEP_TITLES: Record<StepId, string> = {
@@ -32,8 +32,12 @@ function ModalInner() {
   }, [isOpen])
 
   const close = useCallback(() => {
+    // Track abandonment if user got past step 1
+    if (currentStep > 1) {
+      trackFunnelAbandoned(currentStep)
+    }
     router.replace(pathname, { scroll: false })
-  }, [router, pathname])
+  }, [router, pathname, currentStep])
 
   // Lock body scroll when open
   useEffect(() => {

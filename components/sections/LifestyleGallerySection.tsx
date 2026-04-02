@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
+import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { lifestyleGalleryItems } from "@/lib/site";
 import { sectionStyles, typographyStyles } from "@/lib/styles";
 
@@ -57,9 +57,7 @@ export function LifestyleGallerySection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <Button href="?book=1" size="lg">
-            Reserve Your Date &rarr;
-          </Button>
+          <TrackedBookButton label="Reserve Your Date →" location="gallery" size="lg" />
         </div>
       </Container>
     </section>

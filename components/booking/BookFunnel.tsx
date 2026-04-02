@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { BookingDraft, StepId, VehicleId } from '@/lib/booking/types'
 import { validateStep, draftToSubmission } from '@/lib/booking/engine'
-import { trackFunnelStepComplete, trackBookingSubmitted } from '@/lib/analytics'
+import { trackFunnelStepComplete, trackFunnelStepViewed, trackBookingSubmitted, trackPhoneClick } from '@/lib/analytics'
 import { getBookingVehicleById } from '@/lib/booking/vehicles'
 import { BookingProgress } from './BookingProgress'
 import { BookingSummary } from './BookingSummary'
@@ -74,6 +74,13 @@ export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: bo
   const [hydrated, setHydrated] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+
+  // Track when user reaches the contact step
+  useEffect(() => {
+    if (currentStep === 5) {
+      trackFunnelStepViewed(5, 'contact')
+    }
+  }, [currentStep])
 
   useEffect(() => {
     const saved = loadDraft()
@@ -247,7 +254,7 @@ export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: bo
                   <p className="text-sm text-red-700">{submitError}</p>
                   <p className="text-sm text-red-600 mt-1">
                     Or call us directly:{' '}
-                    <a href="tel:+17865651088" className="font-medium underline">
+                    <a href="tel:+17865651088" onClick={() => trackPhoneClick('funnel-error')} className="font-medium underline">
                       (786) 565-1088
                     </a>
                   </p>

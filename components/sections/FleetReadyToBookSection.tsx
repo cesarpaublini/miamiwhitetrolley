@@ -1,4 +1,7 @@
+'use client'
+
 import Link from "next/link";
+import { trackCtaClick } from "@/lib/analytics";
 
 export function FleetReadyToBookSection() {
   return (
@@ -23,6 +26,7 @@ export function FleetReadyToBookSection() {
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="?book=1"
+            onClick={() => trackCtaClick('Book a Vehicle', 'fleet-ready')}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#222222] px-8 py-3.5 text-[0.9rem] font-semibold text-white transition-colors duration-200 hover:bg-[#e03150]"
           >
             Book a Vehicle
@@ -45,6 +49,7 @@ export function FleetReadyToBookSection() {
           </Link>
           <Link
             href="?book=1"
+            onClick={() => trackCtaClick('Get a Quote', 'fleet-ready')}
             className="inline-flex items-center justify-center rounded-full border border-[#DDDDDD] px-8 py-3.5 text-[0.9rem] font-semibold text-[#484848] transition-all duration-200 hover:border-[#222222] hover:text-[#222222]"
           >
             Get a Quote

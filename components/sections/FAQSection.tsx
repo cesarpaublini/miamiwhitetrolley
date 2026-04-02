@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
+import { trackFAQOpen } from "@/lib/analytics";
 
 type FAQ = {
   question: string;
@@ -62,16 +63,6 @@ const faqs: FAQ[] = [
   },
 ];
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-  })),
-}
-
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const half = Math.ceil(faqs.length / 2);
@@ -80,10 +71,6 @@ export function FAQSection() {
 
   return (
     <section className="border-t border-[#EBEBEB] bg-zinc-100/70 py-20 lg:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
       <Container className="space-y-10">
         <header className="space-y-4">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#222222]">FAQ</p>
@@ -103,7 +90,10 @@ export function FAQSection() {
                 faq={faq}
                 index={i}
                 isOpen={openIndex === i}
-                onToggle={() => setOpenIndex((prev) => (prev === i ? null : i))}
+                onToggle={() => {
+                  if (openIndex !== i) trackFAQOpen(faq.question)
+                  setOpenIndex((prev) => (prev === i ? null : i))
+                }}
               />
             ))}
           </div>
@@ -117,7 +107,10 @@ export function FAQSection() {
                   faq={faq}
                   index={globalIndex}
                   isOpen={openIndex === globalIndex}
-                  onToggle={() => setOpenIndex((prev) => (prev === globalIndex ? null : globalIndex))}
+                  onToggle={() => {
+                    if (openIndex !== globalIndex) trackFAQOpen(faq.question)
+                    setOpenIndex((prev) => (prev === globalIndex ? null : globalIndex))
+                  }}
                 />
               );
             })}

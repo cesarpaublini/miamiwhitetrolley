@@ -3,6 +3,7 @@
 import type { BookingDraft, ServiceType } from '@/lib/booking/types'
 import { validateStep, SERVICE_TYPE_LABELS, SERVICE_TYPE_DESCRIPTIONS, estimateHourlyPrice } from '@/lib/booking/engine'
 import { bookingVehicles, BOOKING_CONSTANTS } from '@/lib/booking/vehicles'
+import { trackServiceTypeSelected } from '@/lib/analytics'
 
 interface StepRouteAndTimingProps {
   draft: BookingDraft
@@ -70,7 +71,10 @@ export function StepRouteAndTiming({ draft, onChange, onNext, onBack }: StepRout
                 <button
                   key={id}
                   type="button"
-                  onClick={() => onChange({ serviceType: id })}
+                  onClick={() => {
+                    onChange({ serviceType: id })
+                    trackServiceTypeSelected(id)
+                  }}
                   className={[
                     'flex items-start gap-4 p-4 rounded-xl border text-left transition-all',
                     isSelected

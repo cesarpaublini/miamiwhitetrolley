@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
+import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { navLinks } from "@/lib/nav";
 import { siteConfig } from "@/lib/site";
 
@@ -31,9 +31,7 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3 justify-self-end">
-            <Button href="?book=1" size="md" className="hidden sm:inline-flex">
-              Book Now
-            </Button>
+            <TrackedBookButton label="Book Now" location="navbar" size="md" className="hidden sm:inline-flex" />
             <button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -72,9 +70,7 @@ export function Navbar() {
                   </li>
                 ))}
                 <li className="pt-3">
-                  <Button href="?book=1" size="lg" className="w-full">
-                    Book Now
-                  </Button>
+                  <TrackedBookButton label="Book Now" location="navbar-mobile" size="lg" className="w-full" />
                 </li>
               </ul>
             </nav>

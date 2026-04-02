@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
-import { Button } from "@/components/ui/Button";
+import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { serviceShowcaseItems } from "@/lib/site";
 import { sectionStyles, typographyStyles } from "@/lib/styles";
 
@@ -39,9 +39,7 @@ export function ServiceShowcaseSection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <Button href="?book=1" size="lg">
-            Request a Quote &rarr;
-          </Button>
+          <TrackedBookButton label="Request a Quote →" location="services" size="lg" />
         </div>
       </Container>
     </section>

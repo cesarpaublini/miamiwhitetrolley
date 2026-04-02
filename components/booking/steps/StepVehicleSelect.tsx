@@ -7,7 +7,7 @@ import type { BookingDraft, VehicleRecommendation } from '@/lib/booking/types'
 import { recommendVehicles, isTooLargeForSelfServe } from '@/lib/booking/engine'
 import { classicCarOptions } from '@/lib/booking/vehicles'
 import { validateStep } from '@/lib/booking/engine'
-import { trackVehicleSelected } from '@/lib/analytics'
+import { trackVehicleSelected, trackFleetLinkClick } from '@/lib/analytics'
 
 interface StepVehicleSelectProps {
   draft: BookingDraft
@@ -183,7 +183,10 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
                   <Link
                     href={`/fleet/${rec.vehicle.fleetSlug}`}
                     target="_blank"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      trackFleetLinkClick(rec.vehicle.id)
+                    }}
                     className="text-xs text-zinc-400 hover:text-zinc-700 underline underline-offset-2 mt-2 inline-block transition-colors"
                   >
                     View photos & details ↗

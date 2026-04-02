@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
+import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { heroContent, siteConfig } from "@/lib/site";
 import { sectionStyles, typographyStyles } from "@/lib/styles";
 
@@ -54,9 +54,7 @@ export function Hero() {
 
             {/* Single CTA */}
             <div>
-              <Button href="?book=1" size="lg">
-                {heroContent.primaryCta}
-              </Button>
+              <TrackedBookButton label={heroContent.primaryCta} location="hero" size="lg" />
             </div>
 
             {/* Urgency line */}
