@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import type { BookingDraft, OccasionType } from '@/lib/booking/types'
 import { OCCASION_LABELS, validateStep } from '@/lib/booking/engine'
+import { trackOccasionSelected } from '@/lib/analytics'
 
 interface StepEventDetailsProps {
   draft: BookingDraft
@@ -29,6 +30,7 @@ export function StepEventDetails({ draft, onChange, onNext }: StepEventDetailsPr
 
   function selectOccasion(value: OccasionType) {
     onChange({ occasion: value })
+    trackOccasionSelected(value)
     // Auto-advance after a short delay so user sees their selection
     if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
     autoAdvanceTimer.current = setTimeout(() => {

@@ -8,6 +8,7 @@ import { ServiceShowcaseSection } from "@/components/sections/ServiceShowcaseSec
 import { Testimonials } from "@/components/sections/Testimonials";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { WhyChooseMiamiSection } from "@/components/sections/WhyChooseMiamiSection";
+import { faqItems } from "@/lib/site";
 
 const BASE = 'https://miamiwhitetrolley.com'
 
@@ -31,6 +32,19 @@ export const metadata: Metadata = {
     description: 'Elegant white trolleys and luxury group transport for weddings and events in Miami.',
     images: [`${BASE}/images/white-wedding-trolley-rental-south-florida.jpg`],
   },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
 }
 
 const localBusinessSchema = {
@@ -76,6 +90,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Hero />
       <LifestyleGallerySection />

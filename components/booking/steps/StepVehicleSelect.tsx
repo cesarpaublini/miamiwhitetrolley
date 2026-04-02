@@ -7,6 +7,7 @@ import type { BookingDraft, VehicleRecommendation } from '@/lib/booking/types'
 import { recommendVehicles, isTooLargeForSelfServe } from '@/lib/booking/engine'
 import { classicCarOptions } from '@/lib/booking/vehicles'
 import { validateStep } from '@/lib/booking/engine'
+import { trackVehicleSelected } from '@/lib/analytics'
 
 interface StepVehicleSelectProps {
   draft: BookingDraft
@@ -117,6 +118,7 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
                   estimatedRange: rec.priceRange ?? undefined,
                   classicCarModel: rec.vehicle.id !== 'classic-car' ? undefined : draft.classicCarModel,
                 })
+                trackVehicleSelected(rec.vehicle.id, rec.vehicle.name, rec.units)
                 // Auto-advance unless it's a classic car (user needs to pick a model)
                 if (rec.vehicle.id !== 'classic-car') {
                   if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)

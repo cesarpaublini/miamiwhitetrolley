@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { validateEmail, validatePhone } from '@/lib/validation'
+import { trackContactFormSubmitted } from '@/lib/analytics'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -72,6 +73,7 @@ export function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
+      if (res.ok) trackContactFormSubmitted()
       setStatus(res.ok ? 'success' : 'error')
     } catch {
       setStatus('error')
