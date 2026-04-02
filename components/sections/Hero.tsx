@@ -1,5 +1,4 @@
 import { Container } from "@/components/layout/Container";
-import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
 import { TrackedBookButton } from "@/components/ui/TrackedBookButton";
 import { PromoHeroBadge } from "@/components/ui/PromoHeroBadge";
 import { heroContent, siteConfig } from "@/lib/site";
@@ -12,14 +11,17 @@ export function Hero() {
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
 
           {/* Image — first on mobile, second on desktop */}
+          {/* Plain <img> so URL is in initial HTML for LCP preload scanner */}
           <div className="order-1 lg:order-2 relative overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-100 shadow-sm">
-            <ImageOrPlaceholder
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={heroContent.image}
               alt="White wedding trolley rental in Miami, South Florida"
-              width={1200}
-              height={900}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
+              width={1080}
+              height={1080}
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
               className="h-64 w-full object-cover sm:h-80 lg:h-full"
             />
           </div>
