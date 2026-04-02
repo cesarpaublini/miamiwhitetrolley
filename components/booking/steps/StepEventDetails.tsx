@@ -1,8 +1,8 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import type { BookingDraft, OccasionType } from '@/lib/booking/types'
-import { OCCASION_LABELS } from '@/lib/booking/engine'
-import { validateStep } from '@/lib/booking/engine'
+import { OCCASION_LABELS, validateStep } from '@/lib/booking/engine'
 
 interface StepEventDetailsProps {
   draft: BookingDraft
@@ -14,7 +14,6 @@ const OCCASIONS = Object.entries(OCCASION_LABELS) as [OccasionType, string][]
 
 const OCCASION_ICONS: Record<OccasionType, string> = {
   wedding: '💍',
-  quinceañera: '👑',
   corporate: '🏢',
   prom: '🎓',
   birthday: '🎂',
@@ -24,9 +23,28 @@ const OCCASION_ICONS: Record<OccasionType, string> = {
 export function StepEventDetails({ draft, onChange, onNext }: StepEventDetailsProps) {
   const validation = validateStep(1, draft)
   const errors = validation.errors
+  const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Today in local time for min date
   const today = new Date().toISOString().split('T')[0]
+
+  function selectOccasion(value: OccasionType) {
+    onChange({ occasion: value })
+    // Auto-advance after a short delay so user sees their selection
+    if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
+    autoAdvanceTimer.current = setTimeout(() => {
+      // Only auto-advance if date + guests are already filled
+      const updatedDraft = { ...draft, occasion: value }
+      const result = validateStep(1, updatedDraft)
+      if (result.valid) onNext()
+    }, 300)
+  }
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
+    }
+  }, [])
 
   return (
     <div className="space-y-8">
@@ -45,7 +63,7 @@ export function StepEventDetails({ draft, onChange, onNext }: StepEventDetailsPr
             <button
               key={value}
               type="button"
-              onClick={() => onChange({ occasion: value })}
+              onClick={() => selectOccasion(value)}
               className={[
                 'flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all text-left',
                 draft.occasion === value
@@ -81,9 +99,7 @@ export function StepEventDetails({ draft, onChange, onNext }: StepEventDetailsPr
               'focus:outline-none focus:ring-2 focus:ring-offset-1',
             ].join(' ')}
           />
-          {errors.date && (
-            <p className="text-sm text-red-500 mt-1.5">{errors.date}</p>
-          )}
+          {errors.date && <p className="text-sm text-red-500 mt-1.5">{errors.date}</p>}
         </div>
 
         <div>
@@ -107,41 +123,48 @@ export function StepEventDetails({ draft, onChange, onNext }: StepEventDetailsPr
               'focus:outline-none focus:ring-2 focus:ring-offset-1',
             ].join(' ')}
           />
-          {errors.guestCount && (
-            <p className="text-sm text-red-500 mt-1.5">{errors.guestCount}</p>
-          )}
+          {errors.guestCount && <p className="text-sm text-red-500 mt-1.5">{errors.guestCount}</p>}
         </div>
       </div>
 
-      {/* City */}
-      <div>
-        <label htmlFor="city" className="block text-sm font-semibold text-zinc-700 mb-1.5">
-          Event city <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="city"
-          type="text"
-          placeholder="Miami, FL"
-          value={draft.city ?? ''}
-          onChange={(e) => onChange({ city: e.target.value })}
-          className={[
-            'w-full px-3.5 py-2.5 rounded-xl border text-sm bg-white text-zinc-900 transition-colors',
-            errors.city ? 'border-red-400 focus:ring-red-400' : 'border-zinc-200 focus:ring-zinc-900',
-            'focus:outline-none focus:ring-2 focus:ring-offset-1',
-          ].join(' ')}
-        />
-        {errors.city && (
-          <p className="text-sm text-red-500 mt-1.5">{errors.city}</p>
-        )}
+      {/* Optional: name + phone to capture early */}
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="first-name-early" className="block text-sm font-semibold text-zinc-700 mb-1.5">
+            First name <span className="font-normal text-zinc-400">(optional)</span>
+          </label>
+          <input
+            id="first-name-early"
+            type="text"
+            autoComplete="given-name"
+            placeholder="Maria"
+            value={draft.firstName ?? ''}
+            onChange={(e) => onChange({ firstName: e.target.value })}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors"
+          />
+        </div>
+        <div>
+          <label htmlFor="phone-early" className="block text-sm font-semibold text-zinc-700 mb-1.5">
+            Phone <span className="font-normal text-zinc-400">(optional)</span>
+          </label>
+          <input
+            id="phone-early"
+            type="tel"
+            autoComplete="tel"
+            placeholder="(786) 555-0100"
+            value={draft.phone ?? ''}
+            onChange={(e) => onChange({ phone: e.target.value })}
+            className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors"
+          />
+        </div>
       </div>
 
-      {/* CTA */}
       <button
         type="button"
         onClick={onNext}
         className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-white rounded-xl font-semibold text-sm hover:bg-zinc-700 transition-colors"
       >
-        Continue to Service Type →
+        Continue to Route &amp; Timing →
       </button>
     </div>
   )

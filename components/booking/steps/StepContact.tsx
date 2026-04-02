@@ -125,13 +125,13 @@ export function StepContact({ draft, onChange, onBack, onSubmit, isSubmitting }:
 
       <div>
         <label htmlFor="notes" className="block text-sm font-semibold text-zinc-700 mb-1.5">
-          Special requests or notes{' '}
+          Additional notes{' '}
           <span className="font-normal text-zinc-400">(optional)</span>
         </label>
         <textarea
           id="notes"
           rows={3}
-          placeholder="e.g. We need champagne service, decorations on the vehicle, specific music..."
+          placeholder="Anything else we should know about your event..."
           value={draft.notes ?? ''}
           onChange={(e) => onChange({ notes: e.target.value })}
           className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors resize-none"

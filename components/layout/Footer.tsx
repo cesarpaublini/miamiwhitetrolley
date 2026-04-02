@@ -78,7 +78,7 @@ export function Footer() {
               </p>
             </div>
             <Link
-              href="/book"
+              href="?book=1"
               className="inline-flex h-auto items-center justify-center rounded-full bg-[#222222] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-colors hover:bg-white hover:text-[#111111]"
             >
               Book Now &rarr;

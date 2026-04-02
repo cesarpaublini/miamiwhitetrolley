@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRef } from 'react'
 import type { BookingDraft, VehicleRecommendation } from '@/lib/booking/types'
 import { recommendVehicles, isTooLargeForSelfServe } from '@/lib/booking/engine'
 import { classicCarOptions } from '@/lib/booking/vehicles'
@@ -17,6 +18,7 @@ interface StepVehicleSelectProps {
 export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehicleSelectProps) {
   const validation = validateStep(4, draft)
   const errors = validation.errors
+  const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const guestCount = draft.guestCount ?? 0
   const tooLarge = isTooLargeForSelfServe(guestCount)
@@ -107,7 +109,7 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
             <button
               key={rec.vehicle.id}
               type="button"
-              onClick={() =>
+              onClick={() => {
                 onChange({
                   vehicleId: rec.vehicle.id,
                   vehicleName: rec.vehicle.name,
@@ -115,7 +117,12 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
                   estimatedRange: rec.priceRange ?? undefined,
                   classicCarModel: rec.vehicle.id !== 'classic-car' ? undefined : draft.classicCarModel,
                 })
-              }
+                // Auto-advance unless it's a classic car (user needs to pick a model)
+                if (rec.vehicle.id !== 'classic-car') {
+                  if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
+                  autoAdvanceTimer.current = setTimeout(() => onNext(), 350)
+                }
+              }}
               className={[
                 'w-full flex gap-4 p-4 rounded-xl border text-left transition-all',
                 isSelected

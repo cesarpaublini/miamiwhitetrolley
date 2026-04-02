@@ -8,7 +8,6 @@ import { getBookingVehicleById } from '@/lib/booking/vehicles'
 import { BookingProgress } from './BookingProgress'
 import { BookingSummary } from './BookingSummary'
 import { StepEventDetails } from './steps/StepEventDetails'
-import { StepServiceType } from './steps/StepServiceType'
 import { StepRouteAndTiming } from './steps/StepRouteAndTiming'
 import { StepVehicleSelect } from './steps/StepVehicleSelect'
 import { StepContact } from './steps/StepContact'
@@ -42,28 +41,45 @@ function clearDraft() {
   }
 }
 
-export function BookFunnel() {
+// Step 2 (service type) is eliminated as a standalone screen.
+// Wedding always uses 'hourly' — auto-set on leaving step 1.
+// Non-wedding service type is selected inline on step 3.
+// Visible flow: 1 → 3 → 4 → 5
+function nextStep(current: StepId): StepId {
+  if (current === 1) return 3
+  if (current === 3) return 4
+  if (current === 4) return 5
+  return 5
+}
+
+function prevStep(current: StepId): StepId {
+  if (current === 3) return 1
+  if (current === 4) return 3
+  if (current === 5) return 4
+  return 1
+}
+
+export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: boolean; onStepChange?: (step: StepId) => void }) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
   const rawStep = parseInt(searchParams.get('step') ?? '1', 10)
-  const currentStep = (
-    rawStep >= 1 && rawStep <= TOTAL_STEPS ? rawStep : 1
-  ) as StepId
+  const urlStep = (rawStep >= 1 && rawStep <= TOTAL_STEPS ? rawStep : 1) as StepId
+
+  const [modalStep, setModalStep] = useState<StepId>(1)
+  const currentStep = modalMode ? modalStep : urlStep
 
   const [draft, setDraft] = useState<BookingDraft>({})
   const [hydrated, setHydrated] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  // Hydrate from sessionStorage on mount, then apply vehicle param if present
   useEffect(() => {
     const saved = loadDraft()
     const vehicleParam = searchParams.get('vehicle')
     if (vehicleParam) {
       const vehicle = getBookingVehicleById(vehicleParam)
       if (vehicle) {
-        // Pre-select vehicle but don't overwrite if user already picked one in this session
         const preSelected: Partial<BookingDraft> =
           saved.vehicleId
             ? {}
@@ -89,31 +105,44 @@ export function BookFunnel() {
 
   const goToStep = useCallback(
     (step: StepId) => {
-      router.push(`/book?step=${step}`, { scroll: false })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (modalMode) {
+        setModalStep(step)
+        onStepChange?.(step)
+      } else {
+        router.push(`/book?step=${step}`, { scroll: false })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     },
-    [router],
+    [router, modalMode, onStepChange],
   )
 
   const handleNext = useCallback(
     (step: StepId) => {
       const result = validateStep(step, draft)
       if (!result.valid) {
-        // Trigger re-render so errors show — draft already has the values
         setDraft((d) => ({ ...d }))
         return
       }
-      goToStep((step + 1) as StepId)
+      // Auto-set hourly for weddings when leaving step 1
+      if (step === 1 && draft.occasion === 'wedding') {
+        updateDraft({ serviceType: 'hourly' })
+      }
+      goToStep(nextStep(step))
     },
-    [draft, goToStep],
+    [draft, goToStep, updateDraft],
   )
 
   const handleBack = useCallback(
     (step: StepId) => {
-      goToStep((step - 1) as StepId)
+      goToStep(prevStep(step))
     },
     [goToStep],
   )
+
+  // Called from StepVehicleSelect after auto-advance
+  const handleVehicleNext = useCallback(() => {
+    goToStep(5)
+  }, [goToStep])
 
   const handleSubmit = useCallback(async () => {
     const result = validateStep(5, draft)
@@ -148,7 +177,6 @@ export function BookFunnel() {
     }
   }, [draft, router])
 
-  // Don't render until hydrated to avoid SSR mismatch
   if (!hydrated) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12 flex items-center justify-center min-h-64">
@@ -159,28 +187,17 @@ export function BookFunnel() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
-      {/* Progress indicator */}
       <div className="mb-8 sm:mb-12">
         <BookingProgress currentStep={currentStep} />
       </div>
 
-      {/* Two-column layout: form + sidebar */}
-      <div className="grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start">
-        {/* Step content */}
+      <div className={`grid gap-8 items-start ${modalMode ? '' : 'lg:grid-cols-[1fr_320px] lg:gap-12'}`}>
         <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8">
           {currentStep === 1 && (
             <StepEventDetails
               draft={draft}
               onChange={updateDraft}
               onNext={() => handleNext(1)}
-            />
-          )}
-          {currentStep === 2 && (
-            <StepServiceType
-              draft={draft}
-              onChange={updateDraft}
-              onNext={() => handleNext(2)}
-              onBack={() => handleBack(2)}
             />
           )}
           {currentStep === 3 && (
@@ -195,7 +212,7 @@ export function BookFunnel() {
             <StepVehicleSelect
               draft={draft}
               onChange={updateDraft}
-              onNext={() => handleNext(4)}
+              onNext={handleVehicleNext}
               onBack={() => handleBack(4)}
             />
           )}
@@ -223,10 +240,11 @@ export function BookFunnel() {
           )}
         </div>
 
-        {/* Booking summary sidebar */}
-        <div className="lg:sticky lg:top-6">
-          <BookingSummary draft={draft} />
-        </div>
+        {!modalMode && (
+          <div className="lg:sticky lg:top-6">
+            <BookingSummary draft={draft} />
+          </div>
+        )}
       </div>
     </div>
   )

@@ -2,6 +2,7 @@
 // All business logic: price estimation, vehicle recommendations, step validation.
 // Pure functions — no side effects, no API calls. Safe on client or server.
 
+import { validateEmail, validatePhone } from '@/lib/validation'
 import type {
   BookingDraft,
   BookingVehicle,
@@ -149,7 +150,7 @@ export function recommendVehicles(
 
     // Classic car special rule: only show for very small groups on right occasions
     if (vehicle.id === 'classic-car') {
-      const classicOccasions: OccasionType[] = ['wedding', 'quinceañera', 'birthday']
+      const classicOccasions: OccasionType[] = ['wedding', 'birthday']
       if (
         guestCount > 4 ||
         (occasion && !classicOccasions.includes(occasion)) ||
@@ -205,7 +206,6 @@ export function recommendVehicles(
       score += 2
       const label: Record<OccasionType, string> = {
         wedding: 'weddings',
-        quinceañera: 'quinceañeras',
         corporate: 'corporate events',
         prom: 'proms',
         birthday: 'birthdays',
@@ -275,37 +275,32 @@ export function validateStep(step: StepId, draft: BookingDraft): StepValidationR
     if (!draft.guestCount || draft.guestCount < 1) {
       errors.guestCount = 'Please enter your guest count'
     }
-    if (!draft.city || draft.city.trim().length < 2) {
-      errors.city = 'Please enter your event city'
-    }
   }
 
-  if (step === 2) {
-    if (!draft.serviceType) errors.serviceType = 'Please select a service type'
-  }
+  // Step 2 no longer used as a standalone screen — service type is handled in step 3
 
   if (step === 3) {
+    // For non-wedding occasions, service type must be selected (shown inline)
+    if (draft.occasion !== 'wedding' && !draft.serviceType) {
+      errors.serviceType = 'Please select a service type'
+    }
     if (!draft.pickupAddress || draft.pickupAddress.trim().length < 3) {
-      errors.pickupAddress = 'Please enter a pickup address'
+      errors.pickupAddress = 'Please enter a pickup location'
     }
     // Shuttles loop between locations — drop-off is optional
     if (
       draft.serviceType !== 'shuttle' &&
       (!draft.dropoffAddress || draft.dropoffAddress.trim().length < 3)
     ) {
-      errors.dropoffAddress = 'Please enter a drop-off address'
+      errors.dropoffAddress = 'Please enter a drop-off location'
     }
     if (!draft.startTime) {
       errors.startTime = 'Please enter a start time'
     }
     if (draft.serviceType !== 'one-way') {
-      const selectedVehicle = draft.vehicleId
-        ? bookingVehicles.find((v) => v.id === draft.vehicleId)
-        : null
-      const minHours = selectedVehicle?.minHours ?? BOOKING_CONSTANTS.DEFAULT_MIN_HOURS
-
+      const minHours = BOOKING_CONSTANTS.DEFAULT_MIN_HOURS
       if (!draft.hours) {
-        errors.hours = 'Please enter the number of hours'
+        errors.hours = 'Please select the number of hours'
       } else if (draft.hours < minHours) {
         errors.hours = `Minimum booking is ${minHours} hours`
       }
@@ -320,12 +315,11 @@ export function validateStep(step: StepId, draft: BookingDraft): StepValidationR
   if (step === 5) {
     if (!draft.firstName?.trim()) errors.firstName = 'Please enter your first name'
     if (!draft.lastName?.trim()) errors.lastName = 'Please enter your last name'
-    if (!draft.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(draft.email)) {
-      errors.email = 'Please enter a valid email address'
-    }
-    if (!draft.phone || draft.phone.replace(/\D/g, '').length < 10) {
-      errors.phone = 'Please enter a valid phone number'
-    }
+    const emailError = validateEmail(draft.email ?? '')
+    if (emailError) errors.email = emailError
+
+    const phoneError = validatePhone(draft.phone ?? '')
+    if (phoneError) errors.phone = phoneError
   }
 
   return { valid: Object.keys(errors).length === 0, errors }
@@ -375,8 +369,7 @@ export function isRushBooking(date: string): boolean {
 
 export const OCCASION_LABELS: Record<OccasionType, string> = {
   wedding: 'Wedding',
-  quinceañera: 'Quinceañera',
-  corporate: 'Corporate Event',
+  corporate: 'Corporate',
   prom: 'Prom',
   birthday: 'Birthday',
   other: 'Other',

@@ -1,26 +1,70 @@
 'use client'
 
 import { useState } from 'react'
+import { validateEmail, validatePhone } from '@/lib/validation'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
+type FormFields = {
+  name: string
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
+
+type FormErrors = Partial<Record<keyof FormFields, string>>
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormFields>({
     name: '',
     email: '',
     phone: '',
     subject: '',
     message: '',
   })
+  const [errors, setErrors] = useState<FormErrors>({})
 
-  function set(field: keyof typeof form) {
-    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+  function set(field: keyof FormFields) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }))
+      // Clear error on change
+      if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }))
+    }
+  }
+
+  function validate(): FormErrors {
+    const e: FormErrors = {}
+
+    if (!form.name.trim() || form.name.trim().length < 2) {
+      e.name = 'Please enter your name'
+    }
+
+    const emailError = validateEmail(form.email)
+    if (emailError) e.email = emailError
+
+    if (form.phone.trim()) {
+      const phoneError = validatePhone(form.phone)
+      if (phoneError) e.phone = phoneError
+    }
+
+    if (!form.message.trim() || form.message.trim().length < 10) {
+      e.message = 'Please enter a message (at least 10 characters)'
+    }
+
+    return e
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    const fieldErrors = validate()
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors)
+      return
+    }
+
     setStatus('loading')
     try {
       const res = await fetch('/api/contact', {
@@ -34,8 +78,13 @@ export function ContactForm() {
     }
   }
 
-  const inputClass =
-    'w-full px-4 py-3 rounded-xl border border-zinc-200 text-sm text-zinc-900 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors placeholder:text-zinc-400'
+  const inputClass = (field: keyof FormFields) =>
+    [
+      'w-full px-4 py-3 rounded-xl border text-sm text-zinc-900 bg-white focus:outline-none focus:ring-2 focus:ring-offset-1 transition-colors placeholder:text-zinc-400',
+      errors[field]
+        ? 'border-red-400 focus:ring-red-400'
+        : 'border-zinc-200 focus:ring-zinc-900',
+    ].join(' ')
 
   if (status === 'success') {
     return (
@@ -54,7 +103,11 @@ export function ContactForm() {
         </p>
         <button
           type="button"
-          onClick={() => { setStatus('idle'); setForm({ name: '', email: '', phone: '', subject: '', message: '' }) }}
+          onClick={() => {
+            setStatus('idle')
+            setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+            setErrors({})
+          }}
           className="mt-6 text-sm font-semibold text-zinc-500 hover:text-zinc-900 underline underline-offset-2 transition-colors"
         >
           Send another message
@@ -64,7 +117,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-5">
+    <form onSubmit={handleSubmit} noValidate className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-zinc-700 mb-1.5">
@@ -73,17 +126,17 @@ export function ContactForm() {
           <input
             id="name"
             type="text"
-            required
             autoComplete="name"
             placeholder="Maria Rodriguez"
             value={form.name}
             onChange={set('name')}
-            className={inputClass}
+            className={inputClass('name')}
           />
+          {errors.name && <p className="text-sm text-red-500 mt-1.5">{errors.name}</p>}
         </div>
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold text-zinc-700 mb-1.5">
-            Phone
+            Phone <span className="font-normal text-zinc-400">(optional)</span>
           </label>
           <input
             id="phone"
@@ -92,8 +145,9 @@ export function ContactForm() {
             placeholder="(786) 555-0100"
             value={form.phone}
             onChange={set('phone')}
-            className={inputClass}
+            className={inputClass('phone')}
           />
+          {errors.phone && <p className="text-sm text-red-500 mt-1.5">{errors.phone}</p>}
         </div>
       </div>
 
@@ -104,13 +158,13 @@ export function ContactForm() {
         <input
           id="email"
           type="email"
-          required
           autoComplete="email"
-          placeholder="maria@example.com"
+          placeholder="maria@gmail.com"
           value={form.email}
           onChange={set('email')}
-          className={inputClass}
+          className={inputClass('email')}
         />
+        {errors.email && <p className="text-sm text-red-500 mt-1.5">{errors.email}</p>}
       </div>
 
       <div>
@@ -121,7 +175,7 @@ export function ContactForm() {
           id="subject"
           value={form.subject}
           onChange={set('subject')}
-          className={`${inputClass} bg-white`}
+          className={`${inputClass('subject')} bg-white`}
         >
           <option value="">Select a topic</option>
           <option>General question</option>
@@ -138,13 +192,13 @@ export function ContactForm() {
         </label>
         <textarea
           id="message"
-          required
           rows={5}
           placeholder="Tell us about your event, question, or request..."
           value={form.message}
           onChange={set('message')}
-          className={`${inputClass} resize-none`}
+          className={`${inputClass('message')} resize-none`}
         />
+        {errors.message && <p className="text-sm text-red-500 mt-1.5">{errors.message}</p>}
       </div>
 
       {status === 'error' && (

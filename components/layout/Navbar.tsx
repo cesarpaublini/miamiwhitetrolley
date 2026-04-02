@@ -31,7 +31,7 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3 justify-self-end">
-            <Button href="/book" size="md" className="hidden sm:inline-flex">
+            <Button href="?book=1" size="md" className="hidden sm:inline-flex">
               Book Now
             </Button>
             <button
@@ -72,7 +72,7 @@ export function Navbar() {
                   </li>
                 ))}
                 <li className="pt-3">
-                  <Button href="/book" size="lg" className="w-full">
+                  <Button href="?book=1" size="lg" className="w-full">
                     Book Now
                   </Button>
                 </li>
