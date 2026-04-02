@@ -145,25 +145,21 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
 
               {/* Info */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2 flex-wrap">
-                  <div>
-                    {rec.rank === 1 && (
-                      <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5 mb-1">
-                        Best Match
-                      </span>
-                    )}
-                    {rec.vehicle.badge && rec.rank !== 1 && (
-                      <span className="inline-block text-xs font-medium text-zinc-600 bg-zinc-100 rounded-full px-2 py-0.5 mb-1">
-                        {rec.vehicle.badge}
-                      </span>
-                    )}
-                    <p className="font-semibold text-zinc-900">
-                      {rec.units > 1 ? `${rec.units}× ${rec.vehicle.name}` : rec.vehicle.name}
-                    </p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <p className="text-sm font-medium text-zinc-500">{formatPriceTeaser(rec)}</p>
-                  </div>
+                <div>
+                  {rec.rank === 1 && (
+                    <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5 mb-1">
+                      Best Match
+                    </span>
+                  )}
+                  {rec.vehicle.badge && rec.rank !== 1 && (
+                    <span className="inline-block text-xs font-medium text-zinc-600 bg-zinc-100 rounded-full px-2 py-0.5 mb-1">
+                      {rec.vehicle.badge}
+                    </span>
+                  )}
+                  <p className="font-semibold text-zinc-900">
+                    {rec.units > 1 ? `${rec.units}× ${rec.vehicle.name}` : rec.vehicle.name}
+                  </p>
+                  <p className="text-sm font-medium text-zinc-500 mt-0.5">{formatPriceTeaser(rec)}</p>
                 </div>
 
                 {/* Reason tags */}
@@ -171,7 +167,7 @@ export function StepVehicleSelect({ draft, onChange, onNext, onBack }: StepVehic
                   {rec.reasonTags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs text-zinc-500 bg-zinc-50 border border-zinc-200 rounded-full px-2 py-0.5"
+                      className="whitespace-nowrap text-xs text-zinc-500 bg-zinc-50 border border-zinc-200 rounded-full px-2 py-0.5"
                     >
                       {tag}
                     </span>

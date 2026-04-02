@@ -1,7 +1,10 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import type { BookingDraft } from '@/lib/booking/types'
 import { validateStep, isRushBooking } from '@/lib/booking/engine'
+import { getCurrentPromotion, getPromoVariant, getDiscount, qualifiesForPromo } from '@/lib/promotions'
+import { trackPromoQualified } from '@/lib/analytics'
 
 interface StepContactProps {
   draft: BookingDraft
@@ -16,6 +19,18 @@ export function StepContact({ draft, onChange, onBack, onSubmit, isSubmitting }:
   const errors = validation.errors
   const isRush = draft.date ? isRushBooking(draft.date) : false
 
+  const [promoDiscount, setPromoDiscount] = useState<number | null>(null)
+
+  useEffect(() => {
+    const promo = getCurrentPromotion()
+    if (!promo) return
+    if (!qualifiesForPromo(promo, draft.vehicleId, draft.hours)) return
+    const variant = getPromoVariant()
+    const amount = getDiscount(promo, variant)
+    setPromoDiscount(amount)
+    trackPromoQualified(promo.id, variant, amount)
+  }, [draft.vehicleId, draft.hours])
+
   return (
     <div className="space-y-8">
       <div>
@@ -24,6 +39,18 @@ export function StepContact({ draft, onChange, onBack, onSubmit, isSubmitting }:
           We&apos;ll reach out within 24 hours to confirm your booking — no payment required now.
         </p>
       </div>
+
+      {promoDiscount !== null && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex gap-3">
+          <span className="text-xl shrink-0" aria-hidden="true">🎉</span>
+          <div>
+            <p className="text-sm font-semibold text-emerald-800">
+              You qualify for our April promotion — enter your details to claim <span className="font-bold">${promoDiscount} off</span> your trolley rental
+            </p>
+            <p className="text-xs text-emerald-700 mt-0.5">Valid for 5+ hour bookings · applied when our team confirms your reservation</p>
+          </div>
+        </div>
+      )}
 
       {isRush && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
