@@ -7,6 +7,7 @@ type ImageOrPlaceholderProps = {
   height?: number;
   fill?: boolean;
   priority?: boolean;
+  sizes?: string;
   className?: string;
 };
 
@@ -17,6 +18,7 @@ export function ImageOrPlaceholder({
   height = 900,
   fill = false,
   priority = false,
+  sizes,
   className = "",
 }: ImageOrPlaceholderProps) {
   if (!src) {
@@ -24,8 +26,8 @@ export function ImageOrPlaceholder({
   }
 
   if (fill) {
-    return <Image src={src} alt={alt} fill priority={priority} className={className} />;
+    return <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className={className} />;
   }
 
-  return <Image src={src} alt={alt} width={width} height={height} priority={priority} className={className} />;
+  return <Image src={src} alt={alt} width={width} height={height} priority={priority} sizes={sizes} className={className} />;
 }

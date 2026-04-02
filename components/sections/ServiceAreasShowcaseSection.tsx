@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -54,23 +51,21 @@ function DestinationCard({
   image: string;
   tall?: boolean;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
   const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <Link
       href={`/service-areas/${slug}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`group relative block min-w-[180px] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 transition-shadow duration-300 md:min-w-0 ${
-        isHovered ? "shadow-lg" : "shadow-sm"
-      } ${tall ? "h-[340px]" : "h-[220px]"}`}
+      className={`group relative block min-w-[180px] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 shadow-sm transition-shadow duration-300 hover:shadow-lg md:min-w-0 ${
+        tall ? "h-[340px]" : "h-[220px]"
+      }`}
     >
       <ImageOrPlaceholder
         src={image}
         alt={name}
         width={900}
         height={900}
+        sizes="(max-width: 640px) 50vw, 25vw"
         className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
       />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />

@@ -17,7 +17,7 @@ export function LuxuryFleetSection() {
               across Miami.
             </p>
           </div>
-          <Button href="#fleet" variant="outline" className="border-zinc-400">
+          <Button href="/fleet" variant="outline" className="border-zinc-400">
             View Full Fleet
           </Button>
         </header>
@@ -32,6 +32,7 @@ export function LuxuryFleetSection() {
                     alt={item.title}
                     width={1000}
                     height={700}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="h-52 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:h-56"
                   />
                 </figure>

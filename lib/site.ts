@@ -69,6 +69,7 @@ export const siteConfig = {
   phone: "(786) 565-1088",
   email: "reservations@rumbatoursmiami.com",
   location: "Miami, FL",
+  googleReviewsUrl: "https://www.google.com/search?q=Miami+White+Trolley+reviews",
 };
 
 export const heroContent = {
@@ -77,7 +78,7 @@ export const heroContent = {
   title: "Miami Wedding Trolley Rentals & Luxury Group Transportation",
   description:
     "Elegant white trolleys, sprinter vans, and luxury buses for weddings, corporate events, and private transportation across Miami.",
-  primaryCta: "Book Now",
+  primaryCta: "Reserve Your Date",
   secondaryCta: "Get a Quote",
   image: "/images/white-wedding-trolley-rental-south-florida.jpg",
   highlights: ["Top Rated Service", "Miami & South Florida", "Licensed & Insured"],

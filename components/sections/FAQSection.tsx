@@ -131,7 +131,7 @@ export function FAQSection() {
               Our team is happy to help you plan the perfect transportation experience.
             </p>
           </div>
-          <Button href="/book" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
+          <Button href="/contact" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
             Contact Us &rarr;
           </Button>
         </div>

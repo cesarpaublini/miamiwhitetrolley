@@ -80,11 +80,11 @@ export default function Home() {
       <Hero />
       <LifestyleGallerySection />
       <TrustSection />
+      <Testimonials />
       <LuxuryFleetSection />
       <ServiceShowcaseSection />
       <WhyChooseMiamiSection />
       <ServiceAreasShowcaseSection />
-      <Testimonials />
       <FAQSection />
     </main>
   );

@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/Container";
+import { Button } from "@/components/ui/Button";
 import { ImageOrPlaceholder } from "@/components/ui/ImageOrPlaceholder";
 import { lifestyleGalleryItems } from "@/lib/site";
 import { sectionStyles, typographyStyles } from "@/lib/styles";
@@ -30,6 +31,8 @@ export function LifestyleGallerySection() {
               alt={featureImage?.alt ?? "Feature trolley gallery image"}
               width={1200}
               height={1200}
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              priority
               className="block h-104 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] lg:h-120"
             />
           </figure>
@@ -45,11 +48,18 @@ export function LifestyleGallerySection() {
                   alt={item.alt}
                   width={900}
                   height={700}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 22vw"
                   className="block h-58 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                 />
               </figure>
             ))}
           </div>
+        </div>
+
+        <div className="flex justify-center pt-2">
+          <Button href="/book" size="lg">
+            Reserve Your Date &rarr;
+          </Button>
         </div>
       </Container>
     </section>
