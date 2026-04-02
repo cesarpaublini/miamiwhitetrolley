@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useCallback, Suspense, useState } from 'react'
+import { useEffect, useCallback, Suspense, useState, useRef } from 'react'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import type { StepId } from '@/lib/booking/types'
+import { trackBookModalOpen } from '@/lib/analytics'
 import { BookFunnel } from './BookFunnel'
 
 const STEP_TITLES: Record<StepId, string> = {
@@ -20,6 +21,15 @@ function ModalInner() {
   const [currentStep, setCurrentStep] = useState<StepId>(1)
 
   const isOpen = searchParams.get('book') === '1'
+  const trackedOpen = useRef(false)
+
+  useEffect(() => {
+    if (isOpen && !trackedOpen.current) {
+      trackedOpen.current = true
+      trackBookModalOpen()
+    }
+    if (!isOpen) trackedOpen.current = false
+  }, [isOpen])
 
   const close = useCallback(() => {
     router.replace(pathname, { scroll: false })

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { BookingDraft, StepId, VehicleId } from '@/lib/booking/types'
 import { validateStep, draftToSubmission } from '@/lib/booking/engine'
+import { trackFunnelStepComplete, trackBookingSubmitted } from '@/lib/analytics'
 import { getBookingVehicleById } from '@/lib/booking/vehicles'
 import { BookingProgress } from './BookingProgress'
 import { BookingSummary } from './BookingSummary'
@@ -127,6 +128,12 @@ export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: bo
       if (step === 1 && draft.occasion === 'wedding') {
         updateDraft({ serviceType: 'hourly' })
       }
+      const stepNames: Record<number, string> = {
+        1: 'event_details',
+        3: 'route_and_timing',
+        4: 'vehicle_select',
+      }
+      trackFunnelStepComplete(step, stepNames[step] ?? `step_${step}`)
       goToStep(nextStep(step))
     },
     [draft, goToStep, updateDraft],
@@ -167,8 +174,18 @@ export function BookFunnel({ modalMode = false, onStepChange }: { modalMode?: bo
         throw new Error(data.message ?? `Request failed (${res.status})`)
       }
 
+      trackBookingSubmitted({
+        occasion: payload.occasion,
+        vehicleId: payload.vehicleId,
+        vehicleName: payload.vehicleName,
+        serviceType: payload.serviceType,
+      })
       clearDraft()
-      router.push('/book/confirmation')
+      const confirmParams = new URLSearchParams({
+        date: payload.date,
+        vehicle: payload.vehicleName,
+      })
+      router.push(`/book/confirmation?${confirmParams.toString()}`)
     } catch (err) {
       setSubmitError(
         err instanceof Error ? err.message : 'Something went wrong. Please try again or call us.',
