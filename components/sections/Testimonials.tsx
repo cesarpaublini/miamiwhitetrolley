@@ -54,7 +54,7 @@ export function Testimonials() {
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href="/book" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
+          <Button href="?book=1" className="h-auto px-7 py-3.5 text-[0.9rem] font-semibold">
             Book Your Trolley &rarr;
           </Button>
         </div>

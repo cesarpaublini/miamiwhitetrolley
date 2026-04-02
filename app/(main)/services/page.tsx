@@ -264,7 +264,7 @@ export default function ServicesPage() {
                 White trolleys, shuttles, and private transportation across Miami.
               </p>
               <a
-                href="/book"
+                href="?book=1"
                 className="inline-flex w-fit items-center rounded-full bg-[#222222] px-8 py-4 text-white transition-colors duration-200 hover:bg-[#000000]"
                 style={{
                   fontSize: "0.875rem",
@@ -691,7 +691,7 @@ export default function ServicesPage() {
             across Miami and South Florida.
           </p>
           <a
-            href="/book"
+            href="?book=1"
             className="inline-flex items-center gap-2 rounded-full bg-[#222222] px-10 py-4 text-white transition-colors duration-200 hover:bg-[#000000]"
             style={{
               fontSize: "1rem",

@@ -57,7 +57,7 @@ export function LifestyleGallerySection() {
         </div>
 
         <div className="flex justify-center pt-2">
-          <Button href="/book" size="lg">
+          <Button href="?book=1" size="lg">
             Reserve Your Date &rarr;
           </Button>
         </div>

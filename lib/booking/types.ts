@@ -4,7 +4,6 @@
 
 export type OccasionType =
   | 'wedding'
-  | 'quinceañera'
   | 'corporate'
   | 'prom'
   | 'birthday'

@@ -54,7 +54,7 @@ export function Hero() {
 
             {/* Single CTA */}
             <div>
-              <Button href="/book" size="lg">
+              <Button href="?book=1" size="lg">
                 {heroContent.primaryCta}
               </Button>
             </div>

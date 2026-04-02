@@ -107,7 +107,7 @@ export default function ContactPage() {
                   Skip the message and go straight to our booking funnel — get a price estimate in 2 minutes.
                 </p>
                 <a
-                  href="/book"
+                  href="?book=1"
                   className="block w-full text-center px-5 py-3 bg-zinc-900 text-white rounded-xl text-sm font-semibold hover:bg-zinc-700 transition-colors"
                 >
                   Start Booking →
